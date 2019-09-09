@@ -13,15 +13,17 @@ import { ListPage } from '../list/list.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home'
-  },
-  {
-    path: 'home',
-    component: HomePage
-  },
-  {
-    path: 'list',
-    component: ListPage
+    component: MenuPage,
+    children: [
+      {
+        path: 'home',
+        component: HomePage
+      },
+      {
+        path: 'list',
+        component: ListPage
+      }
+    ]
   }
 ];
 
