@@ -1,0 +1,54 @@
+.toolbar {
+  background-color: '#fe5200';
+}
+
+.formField {
+  display: block;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5vh;
+}
+
+@media only screen and (min-width: 200px) {
+  #login-image {
+    width: 80%;
+    height: auto;
+  }
+}
+
+#card {
+  height: 100%;
+  background-color: white;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  #login-image {
+    width: 50%;
+    height: auto;
+  }
+  #card {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  #login-image {
+    width: 30%;
+    height: auto;
+  }
+}
+ion-content {
+  background-color: #056571;
+  // --background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23045660' fill-opacity='0.6'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+  // --background: linear-gradient(to right, #056571, #649173);
+}
+
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: url('../../assets/img/backgrounds/login.svg') no-repeat center
+    center fixed;
+}
