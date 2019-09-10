@@ -7,21 +7,19 @@ import { IonicModule } from '@ionic/angular';
 
 import { MenuPage } from './menu.page';
 import { MenuTitleComponentModule } from '../components/menu-title/menu-title.module';
-import { HomePage } from '../home/home.page';
-import { ListPage } from '../list/list.page';
-
 const routes: Routes = [
   {
     path: '',
     component: MenuPage,
     children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
-        component: HomePage
+        loadChildren: '../home/home.module#HomePageModule'
       },
       {
         path: 'list',
-        component: ListPage
+        loadChildren: '../list/list.module#ListPageModule'
       }
     ]
   }
@@ -35,6 +33,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MenuTitleComponentModule
   ],
-  declarations: [MenuPage, HomePage, ListPage]
+  declarations: [MenuPage]
 })
 export class MenuPageModule {}
