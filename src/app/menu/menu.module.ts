@@ -20,7 +20,8 @@ const routes: Routes = [
       {
         path: 'list',
         loadChildren: '../list/list.module#ListPageModule'
-      }
+      },
+      { path: 'pool', loadChildren: '../pool/pool.module#PoolPageModule' }
     ]
   }
 ];

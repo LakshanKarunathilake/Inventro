@@ -17,6 +17,11 @@ export class MenuPage implements OnInit {
       title: 'List',
       url: 'list',
       icon: 'list'
+    },
+    {
+      title: 'Pool',
+      url: 'pool',
+      icon: 'list'
     }
   ];
 
