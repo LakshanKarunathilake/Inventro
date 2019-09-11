@@ -11,20 +11,43 @@
     <ion-grid style="width: 100%;position: absolute;bottom:0;">
       <ion-row>
         <ion-col>
-          <ion-button expand="block" size="large">Furniture</ion-button>
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="selectAssetsRelatedToCategory('furniture')"
+            >Furniture</ion-button
+          >
         </ion-col>
         <ion-col>
-          <ion-button expand="block" size="large">Computers</ion-button>
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="selectAssetsRelatedToCategory('furniture')"
+            >Computers</ion-button
+          >
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="block" size="large">Laptops</ion-button>
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="selectAssetsRelatedToCategory('furniture')"
+            >Laptops</ion-button
+          >
         </ion-col>
         <ion-col>
-          <ion-button expand="block" size="large">Electronics</ion-button>
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="selectAssetsRelatedToCategory('furniture')"
+            >Electronics</ion-button
+          >
         </ion-col>
       </ion-row>
     </ion-grid>
+  </div>
+  <div *ngIf="loaded">
+    <asset></asset>
   </div>
 </ion-content>
