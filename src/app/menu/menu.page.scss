@@ -6,21 +6,3 @@
   border: 1px solid #056571;
   border-radius: 5px;
 }
-
-ion-toolbar {
-  --background: #056571;
-  color: white;
-}
-ion-footer {
-  --background: #056571;
-}
-
-ion-icon {
-  --color: white;
-}
-
-@media only screen and (min-width: 1024px) {
-  .menu {
-    max-width: 20%;
-  }
-}
