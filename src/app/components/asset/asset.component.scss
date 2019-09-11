@@ -1,0 +1,72 @@
+.book-title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: '#263238';
+}
+
+.book-author {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: '#607D8B';
+}
+
+.button-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.icon-button {
+  display: block;
+}
+
+.icon {
+  color: white;
+  font-size: 1rem;
+}
+
+ion-grid {
+  --ion-grid-padding: 0px;
+}
+
+.book-description {
+  height: 10vh;
+  overflow: hidden;
+  font-size: 0.5rem;
+}
+
+@media only screen and (max-width: 1800px) {
+  .book-description {
+    max-height: 10vh;
+    overflow: hidden;
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 800px) {
+  .button-panel {
+    padding: 0px;
+    width: 5vw;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .book-description {
+    max-height: 10vh;
+    overflow: hidden;
+    font-size: 0.5rem;
+    font-weight: lighter;
+  }
+}
+
+ion-button {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+ion-card {
+  margin: 10px;
+  max-height: 20vh;
+}
