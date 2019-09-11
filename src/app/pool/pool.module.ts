@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PoolPage } from './pool.page';
+import { AssetComponent } from '../components/asset/asset.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PoolPage]
+  declarations: [PoolPage, AssetComponent],
+  entryComponents: [AssetComponent]
 })
 export class PoolPageModule {}
