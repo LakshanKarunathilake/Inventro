@@ -21,7 +21,16 @@ const routes: Routes = [
         path: 'list',
         loadChildren: '../list/list.module#ListPageModule'
       },
-      { path: 'pool', loadChildren: '../pool/pool.module#PoolPageModule' }
+      { path: 'pool', loadChildren: '../pool/pool.module#PoolPageModule' },
+      {
+        path: 'employee',
+        loadChildren:
+          '../new-employee/new-employee.module#NewEmployeePageModule'
+      },
+      {
+        path: 'asset',
+        loadChildren: '../new-asset/new-asset.module#NewAssetPageModule'
+      }
     ]
   }
 ];

@@ -14,6 +14,16 @@ export class MenuPage implements OnInit {
       icon: 'home'
     },
     {
+      title: 'New Employee',
+      url: 'employee',
+      icon: 'user'
+    },
+    {
+      title: 'New Asset',
+      url: 'asset',
+      icon: 'list'
+    },
+    {
       title: 'List',
       url: 'list',
       icon: 'list'
