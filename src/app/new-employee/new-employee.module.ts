@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { NewEmployeePage } from './new-employee.page';
+import { MatInputModule } from '@angular/material/input';
+import { MenuTitleComponentModule } from '../components/menu-title/menu-title.module';
 
 const routes: Routes = [
   {
@@ -19,6 +21,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MenuTitleComponentModule,
     RouterModule.forChild(routes)
   ],
   declarations: [NewEmployeePage]
