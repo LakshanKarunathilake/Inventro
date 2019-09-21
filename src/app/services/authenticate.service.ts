@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthenticateService {
   constructor() {}
 
-  loginUser = ({ username, password }) => {
+  loginUser = (username, password) => {
     // Example POST method implementation:
     const url = 'http://localhost:8080/employees/login';
     const data = { username, password };
