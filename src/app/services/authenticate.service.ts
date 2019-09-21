@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class AuthenticateService {
   constructor() {}
 
-  loginUser = () => {
+  loginUser = ({ username, password }) => {
     // Example POST method implementation:
-    const url = '';
-    const data = {};
+    const url = 'http://localhost:8080/employees/login';
+    const data = { username, password };
     fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
