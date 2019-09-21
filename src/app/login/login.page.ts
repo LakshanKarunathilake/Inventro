@@ -2,6 +2,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticateService } from '../services/authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private loadingController: LoadingController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authenticationService: AuthenticateService
   ) {
     this.loadingController.create({
       message: 'Please wait verifying!',
@@ -41,13 +43,13 @@ export class LoginPage implements OnInit {
   }
 
   loginAction = async () => {
-    // const userEmail = this.loginForm.controls['userEmail'].value;
-    // const userPassword = this.loginForm.controls['userPassword'].value;
+    const userEmail = this.loginForm.controls['userEmail'].value;
+    const userPassword = this.loginForm.controls['userPassword'].value;
     // const loading = await this.loadingController.create({
     //   message: 'Veryfying your details!'
     // });
-
-    this.router.navigateByUrl('menu', { replaceUrl: true });
+    this.authenticationService.loginUser(userEmail, userPassword);
+    // this.router.navigateByUrl('menu', { replaceUrl: true });
   };
 
   getErrorMessage = (controller: string) => {
