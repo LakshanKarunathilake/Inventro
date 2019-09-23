@@ -1,4 +1,4 @@
-<mat-card style="margin-bottom: 8px;">
+<mat-card style="margin-bottom: 8px;min-height: 22vh">
   <ion-row class="row">
     <ion-col sizeSm="2">
       <!-- <img [src]="bookRequest.file['imageURL']" class="book-cover" /> -->
@@ -7,29 +7,45 @@
         class="book-cover"
       />
     </ion-col>
-    <ion-col sizeSm="10">
+    <ion-col sizeXs="10">
       <div><b>Asset ID </b>: CX-0124154</div>
       <div><b>Type</b> : Desktop Computer</div>
       <hr />
-      <div>
-        CPU: AMD FX 6300 @ 3.8 GHz, Ryzen 3 – 1200, Intel Core i5 2400 @ 3.1
-        GHzM<br />
-        CPU SPEED: Info<br />
-        RAM: 8 GB<br />
-        OS: Windows 7 SP1, Windows 8.1, Windows 10 (64-bit versions only)<br />
-        VIDEO CARD: AMD Radeon R9 285 or NVIDIA GeForce GTX 660 (2GB VRAM with
-        Shader Model 5.0)<br />
-        PIXEL SHADER: 5.0<br />
-        VERTEX SHADER: 5.0<br />
-        SOUND CARD: Yes<br />
-        FREE DISK SPACE: 46GB available hard drive space<br />
-        DEDICATED VIDEO RAM: 2048 MB
-      </div>
-      <div style="float: right">
-        <button mat-raised-button color="primary">Request</button>
-        <button mat-raised-button color="warn">Damage</button>
-        <button mat-raised-button color="accent">Reserve</button>
-      </div>
     </ion-col>
+  </ion-row>
+  <ion-row>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Additional Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          CPU: AMD FX 6300 @ 3.8 GHz, Ryzen 3 – 1200, Intel Core i5 2400 @ 3.1
+          GHzM<br />
+          CPU SPEED: Info<br />
+          RAM: 8 GB<br />
+          OS: Windows 7 SP1, Windows 8.1, Windows 10 (64-bit versions only)<br />
+          VIDEO CARD: AMD Radeon R9 285 or NVIDIA GeForce GTX 660 (2GB VRAM with
+          Shader Model 5.0)<br />
+          PIXEL SHADER: 5.0<br />
+          VERTEX SHADER: 5.0<br />
+          SOUND CARD: Yes<br />
+          FREE DISK SPACE: 46GB available hard drive space<br />
+          DEDICATED VIDEO RAM: 2048 MB
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ion-row>
+
+  <ion-row style="float: right;padding: 10px">
+    <button mat-raised-button color="primary" class="action-button">
+      Request
+    </button>
+    <button mat-raised-button color="warn" class="action-button">Damage</button>
+    <button mat-raised-button color="accent" class="action-button">
+      Reserve
+    </button>
   </ion-row>
 </mat-card>
