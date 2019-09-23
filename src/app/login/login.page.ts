@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
     //   message: 'Veryfying your details!'
     // });
     this.authenticationService.loginUser(userEmail, userPassword);
-    // this.router.navigateByUrl('menu', { replaceUrl: true });
+    this.router.navigateByUrl('menu', { replaceUrl: true });
   };
 
   getErrorMessage = (controller: string) => {
