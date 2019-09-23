@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PoolPage } from './pool.page';
 import { AssetComponent } from '../components/asset/asset.component';
-
+import { MatCardModule } from '@angular/material/card';
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatCardModule
   ],
   declarations: [PoolPage, AssetComponent],
   entryComponents: [AssetComponent]
