@@ -1,55 +1,18 @@
-<ion-card class="book-card" style="background-color: teal;display: flex;">
-  <div class="button-panel">
-    <ion-button
-      fill="clear"
-      (click)="bookPreview()"
-      class="icon-button"
-      size="small"
-    >
-      <ion-icon slot="icon-only" name="eye" class="icon"></ion-icon>
-    </ion-button>
-    <ion-button
-      fill="clear"
-      class="icon-button"
-      size="small"
-      (click)="saveBook()"
-    >
-      <ion-icon slot="icon-only" name="save" class="icon"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" class="icon-button" size="small">
-      <ion-icon slot="icon-only" name="briefcase" class="icon"></ion-icon>
-    </ion-button>
+<mat-card style="margin-bottom: 8px;">
+  <div class="row">
+    <div class="col-sm-2">
+      <!-- <img [src]="bookRequest.file['imageURL']" class="book-cover" /> -->
+      <img
+        src="https://5.imimg.com/data5/EF/RQ/MY-3030942/lenovo-desktop-computer-500x500.jpg"
+        class="book-cover"
+      />
+    </div>
+    <div class="col-sm-10">
+      <div>Computer 001</div>
+      <div><b>Authors</b> :</div>
+      <hr />
+      <div>lorem</div>
+      <div style="float: right"><button mat-raised-button>Approve</button></div>
+    </div>
   </div>
-  <ion-grid style="background-color: white;display:flex">
-    <ion-row justify-content-center align-items-center>
-      <ion-col
-        [hidden]="!getImage(book.url)"
-        sizeXl="1"
-        sizeLg="1"
-        sizeMd="2"
-        sizeSm="2"
-        sizeXs="3"
-        style="padding: 0;background-color: #056571;"
-      >
-        <img [src]="book.url" alt="libri" class="book-image" />
-      </ion-col>
-      <ion-col
-        sizeXl="11"
-        sizeLg="11"
-        sizeMd="10"
-        sizeXs="9"
-        style="height: 100%;"
-      >
-        <div class="book-title">{{ book.title }}</div>
-        <div class="book-author">{{ book.author }}</div>
-        <div
-          barClass="scrollbar"
-          thumbClass="scrollbar-thumbs"
-          class="book-description"
-        >
-          {{ book.abstract }}
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-card>
+</mat-card>
