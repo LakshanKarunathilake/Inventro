@@ -6,7 +6,12 @@
     <ion-searchbar></ion-searchbar>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
+  <!-- Search results for assets -->
+  <section>
+    <asset></asset>
+  </section>
+  <!-- Button panel for quick search item types -->
   <div style="height: 100%;position: relative;">
     <ion-grid style="width: 100%;position: absolute;bottom:0;">
       <ion-row>
@@ -46,8 +51,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
-  <div *ngIf="loaded">
-    <asset></asset>
   </div>
 </ion-content>
