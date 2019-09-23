@@ -1,18 +1,35 @@
 <mat-card style="margin-bottom: 8px;">
-  <div class="row">
-    <div class="col-sm-2">
+  <ion-row class="row">
+    <ion-col sizeSm="2">
       <!-- <img [src]="bookRequest.file['imageURL']" class="book-cover" /> -->
       <img
         src="https://5.imimg.com/data5/EF/RQ/MY-3030942/lenovo-desktop-computer-500x500.jpg"
         class="book-cover"
       />
-    </div>
-    <div class="col-sm-10">
-      <div>Computer 001</div>
-      <div><b>Authors</b> :</div>
+    </ion-col>
+    <ion-col sizeSm="10">
+      <div><b>Asset ID </b>: CX-0124154</div>
+      <div><b>Type</b> : Desktop Computer</div>
       <hr />
-      <div>lorem</div>
-      <div style="float: right"><button mat-raised-button>Approve</button></div>
-    </div>
-  </div>
+      <div>
+        CPU: AMD FX 6300 @ 3.8 GHz, Ryzen 3 – 1200, Intel Core i5 2400 @ 3.1
+        GHzM<br />
+        CPU SPEED: Info<br />
+        RAM: 8 GB<br />
+        OS: Windows 7 SP1, Windows 8.1, Windows 10 (64-bit versions only)<br />
+        VIDEO CARD: AMD Radeon R9 285 or NVIDIA GeForce GTX 660 (2GB VRAM with
+        Shader Model 5.0)<br />
+        PIXEL SHADER: 5.0<br />
+        VERTEX SHADER: 5.0<br />
+        SOUND CARD: Yes<br />
+        FREE DISK SPACE: 46GB available hard drive space<br />
+        DEDICATED VIDEO RAM: 2048 MB
+      </div>
+      <div style="float: right">
+        <button mat-raised-button color="primary">Request</button>
+        <button mat-raised-button color="warn">Damage</button>
+        <button mat-raised-button color="accent">Reserve</button>
+      </div>
+    </ion-col>
+  </ion-row>
 </mat-card>
