@@ -7,8 +7,6 @@ export class AuthenticateService {
   constructor() {}
 
   loginUser = (username, password) => {
-    console.log('username', username);
-    console.log('password', password);
     // Example POST method implementation:
     const url = 'http://localhost:8080/employees/login';
     const data = { username, password };
