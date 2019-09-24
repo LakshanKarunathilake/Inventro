@@ -16,12 +16,12 @@ export class MenuPage implements OnInit {
     {
       title: 'New Employee',
       url: 'employee',
-      icon: 'user'
+      icon: 'contacts'
     },
     {
       title: 'New Asset',
       url: 'asset',
-      icon: 'list'
+      icon: 'cube'
     },
     {
       title: 'List',
@@ -31,12 +31,12 @@ export class MenuPage implements OnInit {
     {
       title: 'Pool',
       url: 'pool',
-      icon: 'list'
+      icon: 'construct'
     },
     {
       title: 'Notifications',
       url: 'notifications',
-      icon: 'list'
+      icon: 'chatboxes'
     }
   ];
 
