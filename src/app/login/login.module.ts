@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
-import { AuthenticateService } from '../services/authenticate.service';
+import { AuthenticateService } from '../services/Authenticate/authenticate.service';
 
 const routes: Routes = [
   {

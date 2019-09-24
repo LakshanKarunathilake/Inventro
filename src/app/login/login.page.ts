@@ -2,7 +2,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticateService } from '../services/authenticate.service';
+import { AuthenticateService } from '../services/Authenticate/authenticate.service';
 
 @Component({
   selector: 'app-login',
