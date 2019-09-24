@@ -43,5 +43,18 @@ export class NewEmployeePage implements OnInit {
     return this.signupForm.controls[control].invalid;
   }
 
-  onSubmit = () => {};
+  onSubmit = () => {
+    const employee: Employee = {
+      firstname: this.signupForm.controls['firstName'].value,
+      lastname: this.signupForm.controls['lastName'].value,
+      gender: this.signupForm.controls['gender'].value,
+      status: this.signupForm.controls['status'].value,
+      address: this.signupForm.controls['address'].value,
+      password: this.signupForm.controls['password'].value,
+      nic: this.signupForm.controls['nic'].value,
+      email: this.signupForm.controls['email'].value,
+      contactNo: this.signupForm.controls['telephoneNumber'].value
+    };
+    console.log('employee', employee);
+  };
 }
