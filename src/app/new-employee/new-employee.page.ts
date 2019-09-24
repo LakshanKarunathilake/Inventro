@@ -9,16 +9,23 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./new-employee.page.scss']
 })
 export class NewEmployeePage implements OnInit {
+  positions = ['Event Organizer', 'Employee'];
   signupForm: FormGroup;
+  values;
   constructor(private fb: FormBuilder, private loadingCtrl: LoadingController) {
     this.signupForm = this.fb.group({
-      displayName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      libraryId: ['', [Validators.required]],
+      nic: ['', [Validators.required]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      telephoneNumber: ['', Validators.required]
+      telephoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      status: ['', Validators.required],
+      gender: ['', Validators.required]
     });
+    this.values = this.signupForm.valueChanges;
   }
 
   ngOnInit() {}
