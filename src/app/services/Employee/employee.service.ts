@@ -5,9 +5,7 @@ import { Employee } from 'src/models/Employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-
-  constructor() { }
-
+  constructor() {}
 
   createNewEmployee = (employee: Employee) => {
     const url = 'http://localhost:8080/employees/add';
@@ -22,5 +20,4 @@ export class EmployeeService {
       .then(data => console.log('data', data))
       .catch(error => console.log('error', error)); // parses JSON response into native JavaScript objects
   };
-  }
 }
