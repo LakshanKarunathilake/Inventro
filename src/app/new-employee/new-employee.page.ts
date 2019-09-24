@@ -1,3 +1,4 @@
+import { Employee } from './../../models/Employee';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
