@@ -32,6 +32,11 @@ export class MenuPage implements OnInit {
       title: 'Pool',
       url: 'pool',
       icon: 'list'
+    },
+    {
+      title: 'Notifications',
+      url: 'notifications',
+      icon: 'list'
     }
   ];
 

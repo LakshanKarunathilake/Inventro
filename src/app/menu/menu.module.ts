@@ -30,6 +30,11 @@ const routes: Routes = [
       {
         path: 'asset',
         loadChildren: '../new-asset/new-asset.module#NewAssetPageModule'
+      },
+      {
+        path: 'notifications',
+        loadChildren:
+          '../notifications/notifications.module#NotificationsPageModule'
       }
     ]
   }
