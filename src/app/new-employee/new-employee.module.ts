@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { NewEmployeePage } from './new-employee.page';
 import { MatInputModule } from '@angular/material/input';
 import { MenuTitleComponentModule } from '../components/menu-title/menu-title.module';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 const routes: Routes = [
   {
@@ -24,6 +26,8 @@ const routes: Routes = [
     MatInputModule,
     ReactiveFormsModule,
     MenuTitleComponentModule,
+    MatSelectModule,
+    MatRadioModule,
     RouterModule.forChild(routes)
   ],
   declarations: [NewEmployeePage]
