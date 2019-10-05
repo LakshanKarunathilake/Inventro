@@ -1,90 +1,59 @@
-<app-menu-title title="Registration of new Employee"> </app-menu-title>
+<app-menu-title title="Registration of new Asset"> </app-menu-title>
 <ion-content padding>
-  {{ values | async | json }}
-  <form [formGroup]="signupForm">
+  <form [formGroup]="newAsset">
     <mat-form-field style="display: block">
-      <mat-label>Enter First Name</mat-label>
-      <input matInput placeholder="First Name" formControlName="firstName" />
-      <mat-error *ngIf="checkFormControlIsValid('firstName')">{{
-        getErrorMessage('firstName')
+      <mat-label>Enter Brand Name</mat-label>
+      <input matInput placeholder="First Name" formControlName="brandName" />
+      <mat-error *ngIf="checkFormControlIsValid('brandName')">{{
+        getErrorMessage('brandName')
       }}</mat-error>
     </mat-form-field>
     <mat-form-field style="display: block">
-      <mat-label>Enter Last Name</mat-label>
-      <input matInput placeholder="Last Name" formControlName="lastName" />
-      <mat-error *ngIf="checkFormControlIsValid('lastName')">{{
-        getErrorMessage('lastName')
+      <mat-label>Enter Bought Company Name</mat-label>
+      <input
+        matInput
+        placeholder="Last Name"
+        formControlName="boughtCompanyName"
+      />
+      <mat-error *ngIf="checkFormControlIsValid('boughtCompanyName')">{{
+        getErrorMessage('boughtCompanyName')
       }}</mat-error>
     </mat-form-field>
     <mat-form-field style="display: block">
-      <mat-label>Enter Email</mat-label>
-      <input matInput placeholder="Email" formControlName="email" />
-      <mat-error *ngIf="checkFormControlIsValid('email')">{{
-        getErrorMessage('email')
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field style="display: block">
-      <mat-label>Enter National Identity Card</mat-label>
-      <input matInput placeholder="NIC" formControlName="nic" />
-      <mat-error *ngIf="checkFormControlIsValid('lastName')">{{
-        getErrorMessage('nic')
+      <mat-label>Enter buying price</mat-label>
+      <input matInput placeholder="NIC" formControlName="buyingPrice" />
+      <mat-error *ngIf="checkFormControlIsValid('buyingPrice')">{{
+        getErrorMessage('buyingPrice')
       }}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Favorite food</mat-label>
-      <mat-select formControlName="status">
-        <mat-option *ngFor="let position of positions" [value]="position">
-          {{ position }}
+      <mat-label>Asset Category</mat-label>
+      <mat-select formControlName="assetCategory">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <section padding>
-      <label>Gender</label><br /><br />
-      <mat-radio-group formControlName="gender">
-        <mat-radio-button class="example-margin" value="male"
-          >Male</mat-radio-button
-        >&nbsp;
-        <mat-radio-button class="example-margin" value="female"
-          >Female</mat-radio-button
-        >
-      </mat-radio-group>
-    </section>
-    <mat-form-field style="display: block" appearance="outline">
-      <input matInput placeholder="password" formControlName="password" />
-      <mat-error *ngIf="checkFormControlIsValid('password')">{{
-        getErrorMessage('password')
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field style="display: block" appearance="outline">
-      <input
-        matInput
-        placeholder="Confirm Password"
-        formControlName="confirmPassword"
-      />
-      <mat-error *ngIf="checkFormControlIsValid('confirmPassword')">{{
-        getErrorMessage('confirmPassword')
-      }}</mat-error>
-    </mat-form-field>
     <mat-form-field style="display: block">
       <input
         matInput
-        placeholder="Contact Number"
-        formControlName="telephoneNumber"
+        placeholder="Enter warranty status"
+        formControlName="warrantyStatus"
       />
-      <mat-error *ngIf="checkFormControlIsValid('telephoneNumber')">{{
-        getErrorMessage('telephoneNumber')
+      <mat-error *ngIf="checkFormControlIsValid('warrantyStatus')">{{
+        getErrorMessage('warrantyStatus')
       }}</mat-error>
     </mat-form-field>
     <mat-form-field style="display: block">
-      <input matInput placeholder="Address" formControlName="address" />
-      <mat-error *ngIf="checkFormControlIsValid('address')">{{
-        getErrorMessage('address')
+      <input matInput placeholder="Description" formControlName="description" />
+      <mat-error *ngIf="checkFormControlIsValid('description')">{{
+        getErrorMessage('description')
       }}</mat-error>
     </mat-form-field>
     <ion-button
       type="submit"
       color="danger"
-      [disabled]="signupForm.invalid"
+      [disabled]="newAsset.invalid"
       (click)="onSubmit()"
       >Register</ion-button
     >
