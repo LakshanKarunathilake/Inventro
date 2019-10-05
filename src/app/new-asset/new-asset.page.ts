@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Asset } from 'src/models/Asset';
 
 @Component({
   selector: 'app-new-asset',
@@ -47,4 +48,11 @@ export class NewAssetPage implements OnInit {
     return this.newAsset.controls[control].invalid;
   }
 
+  onSubmit = () => {
+    const asset: Asset = this.newAsset.value;
+    console.log('asset', asset);
+    // {
+    //   assetCategory: this.newAsset.controls['assetCategory'].value
+    // };
+  };
 }
