@@ -1,9 +1,68 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>new-asset</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu-title title="Registration of new Asset"> </app-menu-title>
+<ion-content padding>
+  <form [formGroup]="newAsset">
+    <mat-form-field>
+      <mat-label>Asset Category</mat-label>
+      <mat-select formControlName="assetCategory">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="display: block">
+      <mat-label>Enter Brand Name</mat-label>
+      <input matInput placeholder="First Name" formControlName="brandName" />
+      <mat-error *ngIf="checkFormControlIsValid('brandName')">{{
+        getErrorMessage('brandName')
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field style="display: block">
+      <mat-label>Enter Bought Company Name</mat-label>
+      <input
+        matInput
+        placeholder="Last Name"
+        formControlName="boughtCompanyName"
+      />
+      <mat-error *ngIf="checkFormControlIsValid('boughtCompanyName')">{{
+        getErrorMessage('boughtCompanyName')
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field style="display: block">
+      <mat-label>Enter buying price</mat-label>
+      <input matInput placeholder="NIC" formControlName="buyingPrice" />
+      <mat-error *ngIf="checkFormControlIsValid('buyingPrice')">{{
+        getErrorMessage('buyingPrice')
+      }}</mat-error>
+    </mat-form-field>
 
-<ion-content>
-
+    <mat-form-field style="display: block">
+      <input
+        matInput
+        placeholder="Enter warranty status"
+        formControlName="warrantyStatus"
+      />
+      <mat-error *ngIf="checkFormControlIsValid('warrantyStatus')">{{
+        getErrorMessage('warrantyStatus')
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field style="display: block">
+      <input matInput placeholder="Description" formControlName="description" />
+      <mat-error *ngIf="checkFormControlIsValid('description')">{{
+        getErrorMessage('description')
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field style="display: block">
+      <input matInput placeholder="2019/02/20" formControlName="boughtDate" />
+      <mat-error *ngIf="checkFormControlIsValid('boughtDate')">{{
+        getErrorMessage('boughtDate')
+      }}</mat-error>
+    </mat-form-field>
+    <ion-button
+      type="submit"
+      color="danger"
+      [disabled]="newAsset.invalid"
+      (click)="onSubmit()"
+      >Register</ion-button
+    >
+  </form>
 </ion-content>
