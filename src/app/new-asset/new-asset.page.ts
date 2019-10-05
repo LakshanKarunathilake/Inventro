@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-new-asset',
   templateUrl: './new-asset.page.html',
-  styleUrls: ['./new-asset.page.scss'],
+  styleUrls: ['./new-asset.page.scss']
 })
 export class NewAssetPage implements OnInit {
   newAsset: FormGroup;
@@ -31,9 +32,19 @@ export class NewAssetPage implements OnInit {
     });
   }
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  getErrorMessage = (controller: string) => {
+    const formController = this.newAsset.controls[controller];
+    return formController.hasError('required')
+      ? 'You must enter a value'
+      : formController.hasError('email')
+      ? 'Not a valid email'
+      : '';
+  };
+
+  checkFormControlIsValid(control: string) {
+    return this.newAsset.controls[control].invalid;
   }
 
 }
