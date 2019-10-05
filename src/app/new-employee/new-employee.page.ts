@@ -11,7 +11,6 @@ import { LoadingController } from '@ionic/angular';
 export class NewEmployeePage implements OnInit {
   positions = ['Event Organizer', 'Employee'];
   signupForm: FormGroup;
-  values;
   constructor(private fb: FormBuilder, private loadingCtrl: LoadingController) {
     this.signupForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -25,7 +24,6 @@ export class NewEmployeePage implements OnInit {
       status: ['', Validators.required],
       gender: ['', Validators.required]
     });
-    this.values = this.signupForm.valueChanges;
   }
 
   ngOnInit() {}
