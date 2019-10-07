@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Employee } from 'src/models/Employee';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   createNewEmployee = (employee: Employee) => {
     const url = 'http://localhost:8080/employees/add';
