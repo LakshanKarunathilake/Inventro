@@ -6,18 +6,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmployeeService {
+  hostURL = 'http://localhost:8080/';
   constructor(private http: HttpClient) {}
 
   createNewEmployee = (employee: Employee) => {
-    const url = 'http://localhost:8080/employees/add';
-    fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(employee) // body data type must match "Content-Type" header
-    })
-      .then(response => response.json())
+    const subURL = 'employees/add';
+    this.http
+      .post<Employee>(this.hostURL + subURL, employee)
+      .toPromise()
       .then(data => console.log('data', data))
       .catch(error => console.log('error', error)); // parses JSON response into native JavaScript objects
   };
