@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Asset } from 'src/models/Asset';
+import { AssetService } from '../services/Asset/asset.service';
 
 @Component({
   selector: 'app-new-asset',
@@ -21,7 +22,7 @@ export class NewAssetPage implements OnInit {
     'SOUND SYSTEM',
     'DISPLAY'
   ];
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private assetService: AssetService) {
     this.newAsset = this.fb.group({
       assetCategory: ['', Validators.required],
       brandName: ['', Validators.required],
@@ -50,9 +51,6 @@ export class NewAssetPage implements OnInit {
 
   onSubmit = () => {
     const asset: Asset = this.newAsset.value;
-    console.log('asset', asset);
-    // {
-    //   assetCategory: this.newAsset.controls['assetCategory'].value
-    // };
+    this.assetService.addNewAsset(asset);
   };
 }
