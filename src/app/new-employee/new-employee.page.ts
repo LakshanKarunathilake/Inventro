@@ -9,7 +9,12 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./new-employee.page.scss']
 })
 export class NewEmployeePage implements OnInit {
-  positions = ['Event Organizer', 'Employee'];
+  positions = [
+    'Event Organizer',
+    'Employee',
+    'Asset Manager',
+    'Department Head'
+  ];
   signupForm: FormGroup;
   constructor(private fb: FormBuilder, private loadingCtrl: LoadingController) {
     this.signupForm = this.fb.group({
