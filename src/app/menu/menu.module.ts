@@ -17,10 +17,6 @@ const routes: Routes = [
         path: 'home',
         loadChildren: '../home/home.module#HomePageModule'
       },
-      {
-        path: 'list',
-        loadChildren: '../list/list.module#ListPageModule'
-      },
       { path: 'pool', loadChildren: '../pool/pool.module#PoolPageModule' },
       {
         path: 'employee',

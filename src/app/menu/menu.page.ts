@@ -24,11 +24,6 @@ export class MenuPage implements OnInit {
       icon: 'cube'
     },
     {
-      title: 'List',
-      url: 'list',
-      icon: 'list'
-    },
-    {
       title: 'Pool',
       url: 'pool',
       icon: 'construct'
