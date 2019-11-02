@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SwalService } from './services/swal/swal.service';
+import { AuthenticateService } from './services/Authenticate/authenticate.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { SwalService } from './services/swal/swal.service';
     StatusBar,
     SplashScreen,
     SwalService,
+    AuthenticateService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
