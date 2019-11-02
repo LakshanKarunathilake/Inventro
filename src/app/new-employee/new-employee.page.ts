@@ -1,7 +1,13 @@
 import { Employee } from './../../models/Employee';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
+import { EmployeeService } from '../services/Employee/employee.service';
 
 @Component({
   selector: 'app-new-employee',
@@ -16,19 +22,26 @@ export class NewEmployeePage implements OnInit {
     'Department Head'
   ];
   signupForm: FormGroup;
-  constructor(private fb: FormBuilder, private loadingCtrl: LoadingController) {
-    this.signupForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      nic: ['', [Validators.required]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      telephoneNumber: ['', Validators.required],
-      address: ['', Validators.required],
-      status: ['', Validators.required],
-      gender: ['', Validators.required]
-    });
+  constructor(
+    private fb: FormBuilder,
+    private loadingCtrl: LoadingController,
+    private employee: EmployeeService
+  ) {
+    this.signupForm = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        nic: ['', [Validators.required]],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+        telephoneNumber: ['', Validators.required],
+        address: ['', Validators.required],
+        status: ['', Validators.required],
+        gender: ['', Validators.required]
+      },
+      { validator: this.MustMatch('password', 'confirmPassword') }
+    );
   }
 
   ngOnInit() {}
@@ -59,5 +72,35 @@ export class NewEmployeePage implements OnInit {
       contactNo: this.signupForm.controls['telephoneNumber'].value
     };
     console.log('employee', employee);
+    this.employee.createNewEmployee(employee);
+  };
+
+  passwordsMatch = () => {
+    const password = this.signupForm.controls['password'].value;
+    const confirmation = this.signupForm.controls['confirmPassword'].value;
+    if (password !== confirmation) {
+      return { passwordMismatch: true };
+    } else {
+      return null;
+    }
+  };
+
+  MustMatch = (controlName: string, matchingControlName: string) => {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+        // return if another validator has already found an error on the matchingControl
+        return;
+      }
+
+      // set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ mustMatch: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
   };
 }
