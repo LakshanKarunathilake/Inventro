@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SwalService } from './services/swal/swal.service';
 import { AuthenticateService } from './services/Authenticate/authenticate.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './services/AuthInterceptor/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,12 @@ import { AuthenticateService } from './services/Authenticate/authenticate.servic
     SplashScreen,
     SwalService,
     AuthenticateService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
