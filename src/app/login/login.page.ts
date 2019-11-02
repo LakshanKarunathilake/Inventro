@@ -45,11 +45,18 @@ export class LoginPage implements OnInit {
   loginAction = async () => {
     const userEmail = this.loginForm.controls['userEmail'].value;
     const userPassword = this.loginForm.controls['userPassword'].value;
-    // const loading = await this.loadingController.create({
-    //   message: 'Veryfying your details!'
-    // });
-    this.authenticationService.loginUser(userEmail, userPassword);
-    this.router.navigateByUrl('menu', { replaceUrl: true });
+    const loading = await this.loadingController.create({
+      message: 'Veryfying your details!'
+    });
+    this.authenticationService
+      .loginUser(userEmail, userPassword)
+      .then(data => {
+        console.log('data', data);
+        this.router.navigateByUrl('menu', { replaceUrl: true });
+      })
+      .finally(() => {
+        loading.dismiss();
+      });
   };
 
   getErrorMessage = (controller: string) => {
