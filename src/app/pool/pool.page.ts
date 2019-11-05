@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetService } from '../services/Asset/asset.service';
 
 @Component({
   selector: 'app-pool',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoolPage implements OnInit {
   loaded = false;
-  constructor() {}
+  constructor(private asset: AssetService) {
+    this.asset.getAllAssets();
+  }
 
   ngOnInit() {}
 
