@@ -42,6 +42,7 @@ export class NewEmployeePage implements OnInit {
       },
       { validator: this.MustMatch('password', 'confirmPassword') }
     );
+    this.employee.getAllEmployees();
   }
 
   ngOnInit() {}
