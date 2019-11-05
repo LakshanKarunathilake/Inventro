@@ -45,6 +45,11 @@ const routes: Routes = [
         path: 'allUsers',
         loadChildren: '../all-users/all-users.module#AllUsersPageModule',
         canActivate: [AuthGuardGuard]
+      },
+      {
+        path: 'requests',
+        loadChildren: '../requests/requests.module#RequestsPageModule',
+        canActivate: [AuthGuardGuard]
       }
     ]
   }
