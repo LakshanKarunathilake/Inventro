@@ -30,6 +30,11 @@ export class MenuPage implements OnInit {
       icon: 'construct'
     },
     {
+      title: 'All Users',
+      url: 'allUsers',
+      icon: 'ribbon'
+    },
+    {
       title: 'Notifications',
       url: 'notifications',
       icon: 'chatboxes'

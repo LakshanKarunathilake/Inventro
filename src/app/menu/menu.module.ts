@@ -19,7 +19,11 @@ const routes: Routes = [
         loadChildren: '../home/home.module#HomePageModule',
         canActivate: [AuthGuardGuard]
       },
-      { path: 'pool', loadChildren: '../pool/pool.module#PoolPageModule' },
+      {
+        path: 'pool',
+        loadChildren: '../pool/pool.module#PoolPageModule',
+        canActivate: [AuthGuardGuard]
+      },
       {
         path: 'employee',
         loadChildren:
@@ -35,6 +39,11 @@ const routes: Routes = [
         path: 'notifications',
         loadChildren:
           '../notifications/notifications.module#NotificationsPageModule',
+        canActivate: [AuthGuardGuard]
+      },
+      {
+        path: 'allUsers',
+        loadChildren: '../all-users/all-users.module#AllUsersPageModule',
         canActivate: [AuthGuardGuard]
       }
     ]
