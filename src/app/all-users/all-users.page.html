@@ -1,0 +1,25 @@
+<app-menu-title title="Registration of new Asset"> </app-menu-title>
+
+<ion-content>
+  <!-- Default Searchbar -->
+  <ion-searchbar></ion-searchbar>
+  <ion-grid>
+    <ion-card *ngFor="let employee of employees | async">
+      <ion-row>
+        <ion-col [sizeXs]="2">
+          <img src="../../assets//img/profile.png" alt="profile" />
+        </ion-col>
+        <ion-col [sizeXs]="10">
+          <div style="padding-bottom: 5px;">
+            <b>
+              {{ employee.firstname + employee.lastname }}
+            </b>
+          </div>
+          <div>
+            {{ employee.status }}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+</ion-content>
