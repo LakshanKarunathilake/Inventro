@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { NotificationsPage } from './notifications.page';
 import { NotificationComponent } from '../components/notification/notification.component';
+import { MenuTitleComponentModule } from '../components/menu-title/menu-title.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    MenuTitleComponentModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
