@@ -31,7 +31,6 @@ export class AuthenticateService {
           // this.writeToSessionStorage(data.token);
           // this.writeToSessionStorage(data.status);
           this.authToken = data.token;
-          console.log('this.authToken', this.getAuthToken());
           this.userType = data.status;
           this.sweet.viewSuccessMessage(
             'Success',
