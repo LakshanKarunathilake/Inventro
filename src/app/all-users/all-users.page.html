@@ -2,7 +2,10 @@
 
 <ion-content>
   <!-- Default Searchbar -->
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar
+    (ionChange)="filterUsers($event.target.value)"
+    debounce="500"
+  ></ion-searchbar>
   <ion-grid>
     <ion-card *ngFor="let employee of employees | async">
       <ion-row>
