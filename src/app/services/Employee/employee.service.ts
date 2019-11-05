@@ -11,7 +11,7 @@ export class EmployeeService {
   constructor(private http: HttpClient, private swal: SwalService) {}
 
   createNewEmployee = (employee: Employee) => {
-    const url = `${environment.backendURL}/employees/add`;
+    const url = `${environment.backendURL}employees/add`;
     this.http
       .post<Employee>(url, employee)
       .toPromise()
@@ -27,5 +27,10 @@ export class EmployeeService {
           'Sorry we could not place your request'
         )
       ); // parses JSON response into native JavaScript objects
+  };
+
+  getAllEmployees = () => {
+    const url = `${environment.backendURL}employees/all`;
+    return this.http.get<Employee[]>(url);
   };
 }
