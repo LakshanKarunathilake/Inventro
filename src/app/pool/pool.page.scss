@@ -1,0 +1,10 @@
+.pool-content {
+  max-height: 80%;
+
+  position: absolute;
+  margin-top: 50px;
+}
+
+ion-content {
+  --offset-top: -70px !important;
+}
