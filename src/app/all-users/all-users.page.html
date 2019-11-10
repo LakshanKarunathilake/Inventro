@@ -27,8 +27,16 @@
         <ion-button
           class="ion-float-right"
           size="small"
+          *ngIf="employee.unblocked"
           (click)="blockUser(employee.nic)"
           >Block</ion-button
+        >
+        <ion-button
+          class="ion-float-right"
+          size="small"
+          *ngIf="!employee.unblocked"
+          (click)="blockUser(employee.nic)"
+          >UnBlock</ion-button
         >
         <ion-button class="ion-float-right" size="small">Update</ion-button>
       </ion-footer>

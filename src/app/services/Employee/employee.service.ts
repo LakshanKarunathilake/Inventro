@@ -93,4 +93,24 @@ export class EmployeeService {
         );
       });
   };
+
+  unBlockUser = (nic: string) => {
+    const url = `${environment.backendURL}employees/unblockuser`;
+    this.http
+      .get(url, {
+        params: {
+          nic
+        }
+      })
+      .toPromise()
+      .then(() => {
+        this.swal.viewSuccessMessage('Success', 'User unblocked Successfully');
+      })
+      .catch(() => {
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry user unblocking failed please try again'
+        );
+      });
+  };
 }
