@@ -13,7 +13,8 @@ import { SwalService } from './services/swal/swal.service';
 import { AuthenticateService } from './services/Authenticate/authenticate.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/AuthInterceptor/auth-interceptor.service';
-
+import { environment } from 'src/environments/environment.prod';
+import { AngularFireModule } from '@angular/fire';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,7 +22,8 @@ import { AuthInterceptorService } from './services/AuthInterceptor/auth-intercep
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     StatusBar,
