@@ -10,7 +10,7 @@
     <ion-card *ngFor="let employee of filteredEMployees | async">
       <ion-row>
         <ion-col [sizeXs]="2">
-          <img src="../../assets//img/profile.png" alt="profile" />
+          <img [src]="employee.img" alt="profile" />
         </ion-col>
         <ion-col [sizeXs]="10">
           <div style="padding-bottom: 5px;">
@@ -24,8 +24,13 @@
         </ion-col>
       </ion-row>
       <ion-footer>
-        <ion-button class="ion-float-right">Deactivate</ion-button>
-        <ion-button class="ion-float-right">Update</ion-button>
+        <ion-button
+          class="ion-float-right"
+          size="small"
+          (click)="blockUser(employee.nic)"
+          >Block</ion-button
+        >
+        <ion-button class="ion-float-right" size="small">Update</ion-button>
       </ion-footer>
     </ion-card>
   </ion-grid>

@@ -20,14 +20,10 @@ export class AllUsersPage implements OnInit {
   }
 
   filterUsers = (val: string) => {
-    console.log('val', val);
     if (val !== '') {
-      console.log('in');
       this.filteredEMployees = this.employees.pipe(
         map((emp: Employee[]) => {
-          console.log('emp', emp);
           return emp.filter(element => {
-            console.log('element', element);
             return (
               element.firstname.toLowerCase().includes(val.toLowerCase()) ||
               element.lastname.toLowerCase().includes(val.toLowerCase())
@@ -38,5 +34,9 @@ export class AllUsersPage implements OnInit {
     } else {
       this.filteredEMployees = this.employees;
     }
+  };
+
+  blockUser = nic => {
+    this.employee.blockUser(nic);
   };
 }
