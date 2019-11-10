@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Asset } from 'src/models/Asset';
 
 @Component({
   selector: 'asset',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./asset.component.scss']
 })
 export class AssetComponent implements OnInit {
+  @Input() asset: Asset;
   constructor() {}
 
   ngOnInit() {}

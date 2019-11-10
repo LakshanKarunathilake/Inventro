@@ -1,15 +1,8 @@
 <mat-card style="margin-bottom: 8px;min-height: 22vh">
   <ion-row class="row">
-    <ion-col sizeSm="2">
-      <!-- <img [src]="bookRequest.file['imageURL']" class="book-cover" /> -->
-      <img
-        src="https://5.imimg.com/data5/EF/RQ/MY-3030942/lenovo-desktop-computer-500x500.jpg"
-        class="book-cover"
-      />
-    </ion-col>
-    <ion-col sizeXs="10">
-      <div><b>Asset ID </b>: CX-0124154</div>
-      <div><b>Type</b> : Desktop Computer</div>
+    <ion-col sizeXs="12">
+      <div><b>Asset ID </b>: {{ asset.assetId }}</div>
+      <div><b>Type</b> : {{ asset.assetcategory }}</div>
       <hr />
     </ion-col>
   </ion-row>
@@ -21,20 +14,15 @@
             Additional Information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div>
-          CPU: AMD FX 6300 @ 3.8 GHz, Ryzen 3 – 1200, Intel Core i5 2400 @ 3.1
-          GHzM<br />
-          CPU SPEED: Info<br />
-          RAM: 8 GB<br />
-          OS: Windows 7 SP1, Windows 8.1, Windows 10 (64-bit versions only)<br />
-          VIDEO CARD: AMD Radeon R9 285 or NVIDIA GeForce GTX 660 (2GB VRAM with
-          Shader Model 5.0)<br />
-          PIXEL SHADER: 5.0<br />
-          VERTEX SHADER: 5.0<br />
-          SOUND CARD: Yes<br />
-          FREE DISK SPACE: 46GB available hard drive space<br />
-          DEDICATED VIDEO RAM: 2048 MB
-        </div>
+        <ion-grid>
+          <ion-row
+            *ngFor="let row of asset | keyvalue; let i = index"
+            [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+          >
+            <ion-col>{{ row.key }}</ion-col>
+            <ion-col>{{ row.value }}</ion-col>
+          </ion-row>
+        </ion-grid>
       </mat-expansion-panel>
     </mat-accordion>
   </ion-row>
