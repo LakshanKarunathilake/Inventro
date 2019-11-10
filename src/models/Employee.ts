@@ -9,4 +9,5 @@ export interface Employee {
   contactNo: number;
   address: string;
   status: string;
+  img?: any;
 }
