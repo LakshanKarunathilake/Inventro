@@ -3,13 +3,37 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar
+      (ionChange)="filterAssets($event.target.value)"
+      debounce="500"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content padding class="pool-content">
+  <!-- Skeleton view -->
+  <div *ngIf="loading || !filterAssets">
+    <ion-list>
+      <ion-item *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
   <!-- Search results for assets -->
   <section>
-    <asset *ngFor="let item of [0, 2, 3, 4]"></asset>
+    <asset [asset]="item" *ngFor="let item of filteredAssets | async"></asset>
   </section>
 </ion-content>
 <!-- Button panel for quick search item types -->
@@ -17,36 +41,24 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button
-          expand="block"
-          size="large"
-          (click)="selectAssetsRelatedToCategory('furniture')"
+        <ion-button expand="block" (click)="filterAssets('Furniture')"
           >Furniture</ion-button
         >
       </ion-col>
       <ion-col>
-        <ion-button
-          expand="block"
-          size="large"
-          (click)="selectAssetsRelatedToCategory('furniture')"
+        <ion-button expand="block" (click)="filterAssets('Computer')"
           >Computers</ion-button
         >
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button
-          expand="block"
-          size="large"
-          (click)="selectAssetsRelatedToCategory('furniture')"
+        <ion-button expand="block" (click)="filterAssets('Laptop')"
           >Laptops</ion-button
         >
       </ion-col>
       <ion-col>
-        <ion-button
-          expand="block"
-          size="large"
-          (click)="selectAssetsRelatedToCategory('furniture')"
+        <ion-button expand="block" (click)="filterAssets('Electronic')"
           >Electronics</ion-button
         >
       </ion-col>
