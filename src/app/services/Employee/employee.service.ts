@@ -33,4 +33,28 @@ export class EmployeeService {
     const url = `${environment.backendURL}employees/all`;
     return this.http.get<Employee[]>(url);
   };
+
+  foregetPassword = (email, password) => {
+    const url = `${environment.backendURL}sendmail`;
+    this.http
+      .post(url, {
+        resetEmail: email,
+        newPassword: password,
+        confirmNewPassword: password
+      })
+      .toPromise()
+      .then(() => {
+        this.swal.viewSuccessMessage(
+          'Success',
+          `Password reset email is sent to ${email} please check`
+        );
+      })
+      .catch(err => {
+        console.log('err', err);
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry your email is not sent please check again'
+        );
+      });
+  };
 }
