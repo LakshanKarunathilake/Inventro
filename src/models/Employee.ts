@@ -10,4 +10,5 @@ export interface Employee {
   address: string;
   status: string;
   img?: any;
+  unblocked: boolean;
 }
