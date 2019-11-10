@@ -28,11 +28,21 @@
   </ion-row>
 
   <ion-row style="padding: 10px">
-    <button mat-raised-button color="primary" class="action-button">
+    <button
+      mat-raised-button
+      color="primary"
+      class="action-button"
+      (click)="bookAsset('request', asset)"
+    >
       Request
     </button>
     <button mat-raised-button color="warn" class="action-button">Damage</button>
-    <button mat-raised-button color="accent" class="action-button">
+    <button
+      mat-raised-button
+      color="accent"
+      class="action-button"
+      (click)="bookAsset('reserve')"
+    >
       Reserve
     </button>
   </ion-row>
