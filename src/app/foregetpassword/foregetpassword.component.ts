@@ -2,6 +2,7 @@ import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SwalService } from '../services/swal/swal.service';
+import { EmployeeService } from '../services/Employee/employee.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -17,7 +18,7 @@ export class ForgetPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private modalController: ModalController,
-    private swal: SwalService
+    private employee: EmployeeService
   ) {}
 
   ngOnInit() {
@@ -42,32 +43,8 @@ export class ForgetPasswordComponent implements OnInit {
 
   forgetPassword = () => {
     const email = this.ForgetPasswordForm.controls['userEmail'].value;
-    // auth()
-    //   .sendPasswordResetEmail(email)
-    //   .then(() => {
-    //     return this.modalController.dismiss();
-    //   })
-    //   .then(() => {
-    //     this.swal.viewSuccessMessage(
-    //       'Email sent',
-    //       'Your Password reset email is sent successfully!, Please check your email'
-    //     );
-    //   })
-    //   .catch(error => {
-    //     if (error.code === 'auth/user-not-found') {
-    //       this.swal.viewErrorMessage(
-    //         'No such user',
-    //         'Such user does not exist in our database please check your email again'
-    //       );
-    //     } else {
-    //       this.swal.viewErrorMessage(
-    //         'Error',
-    //         'Error occured while sending the email!'
-    //       );
-    //     }
-    //     console.log('error occured while resetting the password');
-    //     console.error(error);
-    //   });
+    const password = this.ForgetPasswordForm.controls['password'].value;
+    this.employee.foregetPassword(email, password);
   };
 
   dismissModal = () => {
