@@ -5,8 +5,8 @@ import { SwalService } from '../services/swal/swal.service';
 
 @Component({
   selector: 'app-forget-password',
-  templateUrl: './forget-password.component.html',
-  styleUrls: ['./forget-password.component.scss']
+  templateUrl: './foregetpassword.component.html',
+  styleUrls: ['./foregetpassword.component.scss']
 })
 export class ForgetPasswordComponent implements OnInit {
   ForgetPasswordForm: FormGroup;

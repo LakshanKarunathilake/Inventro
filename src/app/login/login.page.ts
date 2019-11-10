@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticateService } from '../services/Authenticate/authenticate.service';
+import { ForgetPasswordComponent } from '../foregetpassword/foregetpassword.component';
 
 @Component({
   selector: 'app-login',
@@ -94,5 +95,12 @@ export class LoginPage implements OnInit {
         swalProps.title = 'Error';
         break;
     }
+  };
+
+  forgetPassword = async () => {
+    const modal = await this.modalController.create({
+      component: ForgetPasswordComponent
+    });
+    modal.present();
   };
 }

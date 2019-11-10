@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { IonicModule } from '@ionic/angular';
-
+import { MatIconModule } from '@angular/material/icon';
 import { LoginPage } from './login.page';
+import { ForgetPasswordComponent } from '../foregetpassword/foregetpassword.component';
 
 const routes: Routes = [
   {
@@ -21,8 +22,10 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage, ForgetPasswordComponent],
+  entryComponents: [ForgetPasswordComponent]
 })
 export class LoginPageModule {}
