@@ -20,10 +20,6 @@ export class AssetService {
 
   getAllAssets = () => {
     const url = `${environment.backendURL}asset/all`;
-    this.http
-      .get(url)
-      .toPromise()
-      .then(data => console.log('data', data))
-      .catch(error => console.log('error', error));
+    return this.http.get<Asset[]>(url);
   };
 }
