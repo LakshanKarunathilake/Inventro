@@ -1,5 +1,7 @@
 {
   "name": "inventro",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
