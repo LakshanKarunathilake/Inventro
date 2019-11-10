@@ -12,6 +12,7 @@ interface LoginResponse {
   lastname: string;
   img: string;
   contactno: string;
+  unblocked: boolean;
 }
 @Injectable({
   providedIn: 'root'
@@ -27,15 +28,24 @@ export class AuthenticateService {
         .post(environment.backendURL + 'authenticate', { username, password })
         .toPromise()
         .then((data: LoginResponse) => {
-          res('success');
-          // this.writeToSessionStorage(data.token);
-          // this.writeToSessionStorage(data.status);
-          this.authToken = data.token;
-          this.userType = data.status;
-          this.sweet.viewSuccessMessage(
-            'Success',
-            'You are successfully logged in welcome back'
-          );
+          console.log('data', data);
+          if (data.unblocked) {
+            res('success');
+            // this.writeToSessionStorage(data.token);
+            // this.writeToSessionStorage(data.status);
+            this.authToken = data.token;
+            this.userType = data.status;
+            this.sweet.viewSuccessMessage(
+              'Success',
+              'You are successfully logged in welcome back'
+            );
+          } else {
+            this.sweet.viewErrorMessage(
+              'Error',
+              'Sorry you are blocked please contact administrator'
+            );
+            rej('Blocked users');
+          }
         })
         .catch(error => {
           this.sweet.viewErrorMessage(
