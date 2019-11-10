@@ -7,7 +7,7 @@
     debounce="500"
   ></ion-searchbar>
   <ion-grid>
-    <ion-card *ngFor="let employee of employees | async">
+    <ion-card *ngFor="let employee of filteredEMployees | async">
       <ion-row>
         <ion-col [sizeXs]="2">
           <img src="../../assets//img/profile.png" alt="profile" />
