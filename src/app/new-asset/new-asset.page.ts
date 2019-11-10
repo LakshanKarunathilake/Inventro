@@ -22,6 +22,18 @@ export class NewAssetPage implements OnInit {
     'SOUND SYSTEM',
     'DISPLAY'
   ];
+  wYears = [
+    '1 Year',
+    '2 Year',
+    '3 Year',
+    '4 Year',
+    '5 Year',
+    '6 Year',
+    '8 Year',
+    '10 Year'
+  ];
+  wMonths = ['1 Month', '2 Months', '5 Months', '8 Months', '10 Months'];
+  wDays = ['7 Days', '10 Days', '14 Days', '21 Days'];
   constructor(private fb: FormBuilder, private assetService: AssetService) {
     this.newAsset = this.fb.group({
       assetCategory: ['', Validators.required],
@@ -30,7 +42,13 @@ export class NewAssetPage implements OnInit {
       buyingPrice: ['', [Validators.required]],
       warrantyStatus: ['', Validators.required],
       boughtDate: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      wYear: ['', Validators.required],
+      wMonth: ['', Validators.required],
+      wDay: ['', Validators.required],
+      companyName: ['', Validators.required],
+      companyAddress: ['', Validators.required],
+      companyContact: ['', Validators.required]
     });
   }
 

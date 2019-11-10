@@ -34,17 +34,74 @@
         getErrorMessage('buyingPrice')
       }}</mat-error>
     </mat-form-field>
-
-    <mat-form-field style="display: block">
-      <input
-        matInput
-        placeholder="Enter warranty status"
-        formControlName="warrantyStatus"
-      />
-      <mat-error *ngIf="checkFormControlIsValid('warrantyStatus')">{{
-        getErrorMessage('warrantyStatus')
-      }}</mat-error>
+    <mat-form-field>
+      <mat-label>Warranty Status</mat-label>
+      <mat-select formControlName="warrantyStatus">
+        <mat-option value="yes">
+          yes
+        </mat-option>
+        <mat-option value="no">
+          no
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+    <br />
+    <b>Warranty Period</b>
+    <br />
+    <div style="padding: 5px;">
+      <mat-form-field style="padding-left: 5px;">
+        <input
+          matInput
+          placeholder="Years"
+          aria-label="Years"
+          [matAutocomplete]="auto"
+          formControlName="wYear"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let year of wYears" [value]="year">
+            {{ year }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="checkFormControlIsValid('wYear')">{{
+          getErrorMessage('wYear')
+        }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Months"
+          aria-label="Months"
+          [matAutocomplete]="auto1"
+          formControlName="wMonth"
+        />
+        <mat-autocomplete #auto1="matAutocomplete">
+          <mat-option *ngFor="let year of wMonths" [value]="year">
+            {{ year }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="checkFormControlIsValid('wMonth')">{{
+          getErrorMessage('wMonth')
+        }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Days"
+          aria-label="Days"
+          [matAutocomplete]="auto2"
+          formControlName="wDay"
+        />
+        <mat-autocomplete #auto2="matAutocomplete">
+          <mat-option *ngFor="let day of wDays" [value]="day">
+            {{ day }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="checkFormControlIsValid('wDay')">{{
+          getErrorMessage('wDay')
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
     <mat-form-field style="display: block">
       <input matInput placeholder="Description" formControlName="description" />
       <mat-error *ngIf="checkFormControlIsValid('description')">{{
@@ -52,7 +109,14 @@
       }}</mat-error>
     </mat-form-field>
     <mat-form-field style="display: block">
-      <input matInput placeholder="2019/02/20" formControlName="boughtDate" />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a date"
+        formControlName="boughtDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="checkFormControlIsValid('boughtDate')">{{
         getErrorMessage('boughtDate')
       }}</mat-error>
