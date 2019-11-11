@@ -1,2 +1,35 @@
-<app-menu-title title="Requests"></app-menu-title>
-<ion-content> </ion-content>
+<app-menu-title title="Requests & Bookings"></app-menu-title>
+<ion-content padding>
+  <h3>Requests</h3>
+  <ion-card *ngFor="let booking of requests | async">
+    <ion-card-header>
+      <ion-card-title>Booking ID : {{ booking.id }}</ion-card-title>
+      <ion-card-subtitle>Booking ID : {{ booking.assetId }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row
+          *ngFor="let row of booking | keyvalue; let i = index"
+          [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+        >
+          <ion-col>{{ row.key }}</ion-col>
+          <ion-col>{{ row.value }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-footer>
+      <ion-button class="ion-float-right">Approve</ion-button>
+      <ion-button class="ion-float-right">Reject</ion-button>
+    </ion-footer>
+  </ion-card>
+  <br />
+
+  <h3>Bookings</h3>
+  <ion-card *ngFor="let booking of bookings | async">
+    <ion-card-header>
+      <ion-card-title>Booking ID : {{ booking.id }}</ion-card-title>
+      <ion-card-subtitle>Booking ID : {{ booking.assetId }}</ion-card-subtitle>
+    </ion-card-header>
+    sdasd</ion-card
+  >
+</ion-content>
