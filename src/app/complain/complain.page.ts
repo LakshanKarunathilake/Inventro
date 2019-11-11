@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { BreakDown } from 'src/models/BreakDown';
+import { AuthenticateService } from '../services/Authenticate/authenticate.service';
+import { AssetService } from '../services/Asset/asset.service';
 @Component({
   selector: 'app-complain',
   templateUrl: './complain.page.html',
   styleUrls: ['./complain.page.scss']
 })
 export class ComplainPage implements OnInit {
-  constructor(private qrScanner: QRScanner) {}
+  constructor(
+    private qrScanner: QRScanner,
+    private auth: AuthenticateService,
+    private asset: AssetService
+  ) {}
+  description: string;
+  assetId: string;
 
   ngOnInit() {}
 
@@ -33,5 +42,19 @@ export class ComplainPage implements OnInit {
         }
       })
       .catch((e: any) => console.log('Error is', e));
+  };
+
+  placeBreakdown = () => {
+    const { nic, firstname } = this.auth.getUser();
+    const now = new Date();
+    const breakDown: BreakDown = {
+      anyMessage: this.description,
+      assetId: this.assetId,
+      complainedNic: nic,
+      date: `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`,
+      fName: firstname,
+      notificationType: 'BreakDown'
+    };
+    this.asset.placeBreakDown(breakDown);
   };
 }

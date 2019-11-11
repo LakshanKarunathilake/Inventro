@@ -7,6 +7,20 @@
     </ion-card-header>
     <ion-card-content>
       <img class="image" src="../../assets/img/backgrounds/transfer-scan.svg" />
+      <mat-form-field style="display: block;">
+        <mat-label>Enter Asset ID</mat-label>
+        <input matInput placeholder="LAP001" [(ngModel)]="assetId" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" style="display: block;">
+        <textarea matInput placeholder="Description" [(ngModel)]="description">
+1600 Amphitheatre Pkwy</textarea
+        >
+      </mat-form-field>
+      <ion-button
+        (click)="placeBreakdown()"
+        [disabled]="!description && !assetId"
+        >Place</ion-button
+      >
       <ion-button (click)="scanQR()">
         SCAN
       </ion-button>
