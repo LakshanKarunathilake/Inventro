@@ -43,6 +43,11 @@ export class MenuPage implements OnInit {
       title: 'Requests',
       url: 'requests',
       icon: 'cart'
+    },
+    {
+      title: 'complain',
+      url: 'complain',
+      icon: 'bug'
     }
   ];
 

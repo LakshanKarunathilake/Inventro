@@ -50,6 +50,11 @@ const routes: Routes = [
         path: 'requests',
         loadChildren: '../requests/requests.module#RequestsPageModule',
         canActivate: [AuthGuardGuard]
+      },
+      {
+        path: 'complain',
+        loadChildren: '../complain/complain.module#ComplainPageModule',
+        canActivate: [AuthGuardGuard]
       }
     ]
   }

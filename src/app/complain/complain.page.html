@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>complain</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu-title title="Complain"></app-menu-title>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      SCAN FOR REPORT
+    </ion-card-header>
+    <ion-card-content>
+      <img class="image" src="../../assets/img/backgrounds/transfer-scan.svg" />
+      <ion-button (click)="scanQR()">
+        SCAN
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
