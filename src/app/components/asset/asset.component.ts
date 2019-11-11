@@ -2,6 +2,8 @@ import { AlertController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { Asset } from 'src/models/Asset';
 import { AssetService } from 'src/app/services/Asset/asset.service';
+import { AuthenticateService } from 'src/app/services/Authenticate/authenticate.service';
+import { BookAsset } from 'src/models/BookAsset';
 
 @Component({
   selector: 'asset',
@@ -12,7 +14,8 @@ export class AssetComponent implements OnInit {
   @Input() asset: Asset;
   constructor(
     private alertController: AlertController,
-    private assetService: AssetService
+    private assetService: AssetService,
+    private auth: AuthenticateService
   ) {}
 
   ngOnInit() {}
@@ -27,19 +30,17 @@ export class AssetComponent implements OnInit {
       header: 'Mention the From Date, To Date and a message!',
       inputs: [
         {
-          name: 'From Date',
+          name: 'from',
           label: 'From Date',
           type: 'date',
           value: '2019-10-11'
         },
         {
-          label: 'To Date',
-          name: 'To Date',
+          name: 'to',
           type: 'date'
         },
         {
-          label: 'Description',
-          name: 'Description',
+          name: 'description',
           type: 'text'
         }
       ],
@@ -48,14 +49,34 @@ export class AssetComponent implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
+          handler: data => {
+            console.log('Confirm Cancel', data);
           }
         },
         {
           text: 'Ok',
-          handler: () => {
-            // this.assetService.placeBook(request);
+          handler: data => {
+            const now = new Date();
+            const request: BookAsset = {
+              assetId: asset.assetId,
+              id: asset.id,
+              assetcategory: asset.assetcategory,
+              beginDate: data['from'],
+              description: data['description'],
+              dueDate: data['to'],
+              notificationType: '',
+              requestedNic: this.auth.getUser().nic,
+              username: this.auth.getUser().firstname,
+              requestMadeDate: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`
+            };
+            console.log('request', request);
+            if (type === 'reserve') {
+              request.notificationType = 'Book';
+              this.assetService.placeBook(request);
+            } else {
+              request.notificationType = 'Request';
+              this.assetService.placeRequest(request);
+            }
           }
         }
       ]
