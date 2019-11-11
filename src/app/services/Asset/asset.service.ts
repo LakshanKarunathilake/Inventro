@@ -78,9 +78,9 @@ export class AssetService {
   };
 
   deleteAsset = id => {
-    const url = `${environment.backendURL}asset/delete/id `;
+    const url = `${environment.backendURL}asset/delete`;
     this.http
-      .delete(url)
+      .post(url, { id })
       .toPromise()
       .then(() => {
         this.swal.viewSuccessMessage('Succes', 'Asset Deleted successfully');
