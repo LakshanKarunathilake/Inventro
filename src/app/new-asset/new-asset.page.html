@@ -1,132 +1,443 @@
 <app-menu-title title="Registration of new Asset"> </app-menu-title>
 <ion-content padding>
-  <form [formGroup]="newAsset">
-    <mat-form-field>
-      <mat-label>Asset Category</mat-label>
-      <mat-select formControlName="assetCategory">
-        <mat-option *ngFor="let category of categories" [value]="category">
-          {{ category }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field style="display: block">
-      <mat-label>Enter Brand Name</mat-label>
-      <input matInput placeholder="First Name" formControlName="brandName" />
-      <mat-error *ngIf="checkFormControlIsValid('brandName')">{{
-        getErrorMessage('brandName')
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field style="display: block">
-      <mat-label>Enter Bought Company Name</mat-label>
-      <input
-        matInput
-        placeholder="Last Name"
-        formControlName="boughtCompanyName"
-      />
-      <mat-error *ngIf="checkFormControlIsValid('boughtCompanyName')">{{
-        getErrorMessage('boughtCompanyName')
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field style="display: block">
-      <mat-label>Enter buying price</mat-label>
-      <input matInput placeholder="NIC" formControlName="buyingPrice" />
-      <mat-error *ngIf="checkFormControlIsValid('buyingPrice')">{{
-        getErrorMessage('buyingPrice')
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Warranty Status</mat-label>
-      <mat-select formControlName="warrantyStatus">
-        <mat-option value="yes">
-          yes
-        </mat-option>
-        <mat-option value="no">
-          no
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br />
-    <b>Warranty Period</b>
-    <br />
-    <div style="padding: 5px;">
-      <mat-form-field style="padding-left: 5px;">
-        <input
-          matInput
-          placeholder="Years"
-          aria-label="Years"
-          [matAutocomplete]="auto"
-          formControlName="wYear"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let year of wYears" [value]="year">
-            {{ year }}
-          </mat-option>
-        </mat-autocomplete>
-        <mat-error *ngIf="checkFormControlIsValid('wYear')">{{
-          getErrorMessage('wYear')
-        }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Months"
-          aria-label="Months"
-          [matAutocomplete]="auto1"
-          formControlName="wMonth"
-        />
-        <mat-autocomplete #auto1="matAutocomplete">
-          <mat-option *ngFor="let year of wMonths" [value]="year">
-            {{ year }}
-          </mat-option>
-        </mat-autocomplete>
-        <mat-error *ngIf="checkFormControlIsValid('wMonth')">{{
-          getErrorMessage('wMonth')
-        }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Days"
-          aria-label="Days"
-          [matAutocomplete]="auto2"
-          formControlName="wDay"
-        />
-        <mat-autocomplete #auto2="matAutocomplete">
-          <mat-option *ngFor="let day of wDays" [value]="day">
-            {{ day }}
-          </mat-option>
-        </mat-autocomplete>
-        <mat-error *ngIf="checkFormControlIsValid('wDay')">{{
-          getErrorMessage('wDay')
-        }}</mat-error>
-      </mat-form-field>
-    </div>
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="commonFieldsGroup">
+      <form [formGroup]="commonFieldsGroup">
+        <ng-template matStepLabel>Fill out basics</ng-template>
+        <mat-form-field>
+          <mat-label>Asset Category</mat-label>
+          <mat-select formControlName="assetCategory">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'assetCategory')"
+            >{{
+              getErrorMessage(commonFieldsGroup, 'assetCategory')
+            }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>Enter buying price</mat-label>
+          <input
+            matInput
+            placeholder="RS.10000"
+            formControlName="buyingPrice"
+          />
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'buyingPrice')"
+            >{{ getErrorMessage(commonFieldsGroup, 'buyingPrice') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>Warranty Status</mat-label>
+          <mat-select formControlName="warrantyStatus">
+            <mat-option value="yes">
+              yes
+            </mat-option>
+            <mat-option value="no">
+              no
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br /><br />
+        <b>Warranty Period</b>
+        <br />
+        <div style="padding: 5px;">
+          <mat-form-field style="padding-left: 5px;">
+            <input
+              matInput
+              placeholder="Years"
+              aria-label="Years"
+              [matAutocomplete]="auto"
+              formControlName="wYear"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let year of wYears" [value]="year">
+                {{ year }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error
+              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'wYear')"
+              >{{ getErrorMessage(commonFieldsGroup, 'wYear') }}</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Months"
+              aria-label="Months"
+              [matAutocomplete]="auto1"
+              formControlName="wMonth"
+            />
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let year of wMonths" [value]="year">
+                {{ year }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error
+              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'wMonth')"
+              >{{ getErrorMessage(commonFieldsGroup, 'wMonth') }}</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Days"
+              aria-label="Days"
+              [matAutocomplete]="auto2"
+              formControlName="wDay"
+            />
+            <mat-autocomplete #auto2="matAutocomplete">
+              <mat-option *ngFor="let day of wDays" [value]="day">
+                {{ day }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error
+              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'wDay')"
+              >{{ getErrorMessage(commonFieldsGroup, 'wDay') }}</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <br /><br />
 
-    <mat-form-field style="display: block">
-      <input matInput placeholder="Description" formControlName="description" />
-      <mat-error *ngIf="checkFormControlIsValid('description')">{{
-        getErrorMessage('description')
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field style="display: block">
-      <input
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Choose a date"
-        formControlName="boughtDate"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="checkFormControlIsValid('boughtDate')">{{
-        getErrorMessage('boughtDate')
-      }}</mat-error>
-    </mat-form-field>
-    <ion-button
-      type="submit"
-      color="danger"
-      [disabled]="newAsset.invalid"
-      (click)="onSubmit()"
-      >Register</ion-button
-    >
-  </form>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Description"
+            formControlName="description"
+          />
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'description')"
+            >{{ getErrorMessage(commonFieldsGroup, 'description') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>Location</mat-label>
+          <mat-select formControlName="location">
+            <mat-option *ngFor="let location of locations" [value]="location">
+              {{ location }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'location')"
+            >{{ getErrorMessage(commonFieldsGroup, 'location') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Bought date"
+            formControlName="boughtDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'boughtDate')"
+            >{{ getErrorMessage(commonFieldsGroup, 'boughtDate') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Company Name"
+            formControlName="companyName"
+          />
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'companyName')"
+            >{{ getErrorMessage(commonFieldsGroup, 'companyName') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Company Address"
+            formControlName="companyAddress"
+          />
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'companyAddress')"
+            >{{
+              getErrorMessage(commonFieldsGroup, 'companyAddress')
+            }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Company Contact"
+            formControlName="companyContact"
+          />
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'companyContact')"
+            >{{
+              getErrorMessage(commonFieldsGroup, 'companyContact')
+            }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <div>
+          <button mat-button matStepperNext color="warn">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step *ngIf="specialFormGroup" [stepControl]="specialFormGroup">
+      <ng-template matStepLabel>Special Features</ng-template>
+      <form
+        [formGroup]="computerFormGroup"
+        *ngIf="specialFormGroup === computerFormGroup"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Brand Name"
+            aria-label="BranName"
+            [matAutocomplete]="cbranda"
+            formControlName="brandName"
+          />
+          <mat-autocomplete #cbranda="matAutocomplete">
+            <mat-option *ngFor="let brand of computerBrands" [value]="brand">
+              {{ brand }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(computerFormGroup, 'brandName')"
+            >{{ getErrorMessage(computerFormGroup, 'brandName') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Processor"
+            aria-label="Processor"
+            [matAutocomplete]="processora"
+            formControlName="processor"
+          />
+          <mat-autocomplete #processora="matAutocomplete">
+            <mat-option
+              *ngFor="let processor of processors"
+              [value]="processor"
+            >
+              {{ processor }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(computerFormGroup, 'processor')"
+            >{{ getErrorMessage(computerFormGroup, 'processor') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="RAM"
+            aria-label="RAM"
+            [matAutocomplete]="rama"
+            formControlName="ram"
+          />
+          <mat-autocomplete #rama="matAutocomplete">
+            <mat-option *ngFor="let ram of rams" [value]="ram">
+              {{ ram }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(computerFormGroup, 'ram')"
+            >{{ getErrorMessage(computerFormGroup, 'ram') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Capacity"
+            aria-label="Capacity"
+            [matAutocomplete]="Capacitya"
+            formControlName="capacity"
+          />
+          <mat-autocomplete #Capacitya="matAutocomplete">
+            <mat-option *ngFor="let capacity of capacitys" [value]="capacity">
+              {{ capacity }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(computerFormGroup, 'capacity')"
+            >{{ getErrorMessage(computerFormGroup, 'capacity') }}</mat-error
+          >
+        </mat-form-field>
+      </form>
+
+      <!-- Projector -->
+
+      <form
+        [formGroup]="projectorFormGroup"
+        *ngIf="specialFormGroup === projectorFormGroup"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Brand Name"
+            aria-label="BranName"
+            [matAutocomplete]="pbranda"
+            formControlName="brandName"
+          />
+          <mat-autocomplete #pbranda="matAutocomplete">
+            <mat-option *ngFor="let brand of projectorBrands" [value]="brand">
+              {{ brand }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(projectorFormGroup, 'brandName')"
+            >{{ getErrorMessage(projectorFormGroup, 'brandName') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Category"
+            aria-label="Category"
+            [matAutocomplete]="pcategorya"
+            formControlName="category"
+          />
+          <mat-autocomplete #pcategorya="matAutocomplete">
+            <mat-option
+              *ngFor="let category of projectorCategory"
+              [value]="category"
+            >
+              {{ category }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(projectorFormGroup, 'category')"
+            >{{ getErrorMessage(projectorFormGroup, 'category') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>QTY</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="qty" />
+          <mat-error
+            *ngIf="checkFormControlIsValid(projectorFormGroup, 'qty')"
+            >{{ getErrorMessage(projectorFormGroup, 'qty') }}</mat-error
+          >
+        </mat-form-field>
+      </form>
+      <br /><br />
+
+      <!-- Furniture -->
+
+      <form
+        [formGroup]="furnitureFormGroup"
+        *ngIf="specialFormGroup === furnitureFormGroup"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Brand Name"
+            aria-label="BranName"
+            [matAutocomplete]="fbranda"
+            formControlName="brandName"
+          />
+          <mat-autocomplete #fbranda="matAutocomplete">
+            <mat-option *ngFor="let brand of furnitureBrands" [value]="brand">
+              {{ brand }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(furnitureFormGroup, 'brandName')"
+            >{{ getErrorMessage(furnitureFormGroup, 'brandName') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Category"
+            aria-label="Category"
+            [matAutocomplete]="fCategorya"
+            formControlName="category"
+          />
+          <mat-autocomplete #fCategorya="matAutocomplete">
+            <mat-option
+              *ngFor="let category of furnitureCategory"
+              [value]="category"
+            >
+              {{ category }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(furnitureFormGroup, 'category')"
+            >{{ getErrorMessage(furnitureFormGroup, 'category') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>QTY</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="qty" />
+          <mat-error
+            *ngIf="checkFormControlIsValid(furnitureFormGroup, 'qty')"
+            >{{ getErrorMessage(furnitureFormGroup, 'qty') }}</mat-error
+          >
+        </mat-form-field>
+      </form>
+
+      <!-- Other -->
+      <form
+        [formGroup]="otherFormGroup"
+        *ngIf="specialFormGroup === otherFormGroup"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Category"
+            aria-label="Category"
+            [matAutocomplete]="oCategorya"
+            formControlName="category"
+          />
+          <mat-autocomplete #oCategorya="matAutocomplete">
+            <mat-option
+              *ngFor="let category of otherCategory"
+              [value]="category"
+            >
+              {{ category }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="checkFormControlIsValid(otherFormGroup, 'category')"
+            >{{ getErrorMessage(otherFormGroup, 'category') }}</mat-error
+          >
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>QTY</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="qty" />
+          <mat-error
+            *ngIf="checkFormControlIsValid(projectorFormGroup, 'qty')"
+            >{{ getErrorMessage(projectorFormGroup, 'qty') }}</mat-error
+          >
+        </mat-form-field>
+      </form>
+      <div float="right">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="onSubmit()">Submit</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+    </mat-step>
+  </mat-horizontal-stepper>
 </ion-content>

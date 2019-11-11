@@ -9,7 +9,7 @@ import { AssetService } from '../services/Asset/asset.service';
   styleUrls: ['./new-asset.page.scss']
 })
 export class NewAssetPage implements OnInit {
-  newAsset: FormGroup;
+  commonFieldsGroup: FormGroup;
   categories = [
     'OTHER',
     'LAPTOP',
@@ -23,6 +23,7 @@ export class NewAssetPage implements OnInit {
     'DISPLAY'
   ];
   wYears = [
+    '0 Year',
     '1 Year',
     '2 Year',
     '3 Year',
@@ -32,17 +33,58 @@ export class NewAssetPage implements OnInit {
     '8 Year',
     '10 Year'
   ];
-  wMonths = ['1 Month', '2 Months', '5 Months', '8 Months', '10 Months'];
-  wDays = ['7 Days', '10 Days', '14 Days', '21 Days'];
+  wMonths = [
+    '0 Month',
+    '1 Month',
+    '2 Months',
+    '5 Months',
+    '8 Months',
+    '10 Months'
+  ];
+  wDays = ['0 Days', '7 Days', '10 Days', '14 Days', '21 Days'];
+  locations = [
+    'Head Office',
+    'IT Department',
+    'HR Department',
+    'Finance Department',
+    'Front Table',
+    'Store Room',
+    'Lobby'
+  ];
+  computerBrands = ['HP', 'DELL', 'ASUS', 'MSI', 'APPLE', 'ACER', 'LENOVO'];
+  capacitys = ['1 TB', '2 TB', '3 TB', '4 TB'];
+  rams = ['2 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '32 GB'];
+  processors = ['Core i7', 'Core i5', 'Core i3'];
+
+  projectorBrands = ['HP', 'SAMSUNG', 'CASIO', 'ACER', 'LENOVO'];
+  projectorCategory = ['LCD', 'CRT', 'LED', 'DLP'];
+
+  furnitureBrands = [
+    'DAMRO',
+    'NILKAMAL',
+    'NISACO',
+    'DAMBULLA FURNITURE',
+    'ARPICO'
+  ];
+  furnitureCategory = ['OFFICE TABLE', 'OFFICE CHAIR', 'CUPBOARDS', 'SOFA'];
+
+  otherCategory = ['TELEVISION', 'SOUND SYSTEM', 'UPS', 'ROUTERS'];
+
+  computerFormGroup: FormGroup;
+  projectorFormGroup: FormGroup;
+  furnitureFormGroup: FormGroup;
+  otherFormGroup: FormGroup;
+
+  specialFormGroup: FormGroup;
+
   constructor(private fb: FormBuilder, private assetService: AssetService) {
-    this.newAsset = this.fb.group({
+    this.commonFieldsGroup = this.fb.group({
       assetCategory: ['', Validators.required],
-      brandName: ['', Validators.required],
-      boughtCompanyName: ['', Validators.required],
       buyingPrice: ['', [Validators.required]],
       warrantyStatus: ['', Validators.required],
       boughtDate: ['', Validators.required],
       description: ['', Validators.required],
+      location: ['', Validators.required],
       wYear: ['', Validators.required],
       wMonth: ['', Validators.required],
       wDay: ['', Validators.required],
@@ -50,25 +92,71 @@ export class NewAssetPage implements OnInit {
       companyAddress: ['', Validators.required],
       companyContact: ['', Validators.required]
     });
+
+    this.commonFieldsGroup.controls['assetCategory'].valueChanges.subscribe(
+      data => {
+        if (data === 'PC' || data === 'LAPTOP') {
+          this.specialFormGroup = this.computerFormGroup;
+        } else if (data === 'PROJECTOR') {
+          this.specialFormGroup = this.projectorFormGroup;
+        } else if (data === 'FURNITURE') {
+          this.specialFormGroup = this.furnitureFormGroup;
+        } else {
+          this.specialFormGroup = this.otherFormGroup;
+        }
+      }
+    );
+
+    this.computerFormGroup = this.fb.group({
+      brandName: ['', Validators.required],
+      capacity: ['', Validators.required],
+      ram: ['', Validators.required],
+      processor: ['', Validators.required]
+    });
+
+    this.projectorFormGroup = this.fb.group({
+      brandName: ['', Validators.required],
+      category: ['', Validators.required],
+      qty: ['', Validators.required]
+    });
+
+    this.furnitureFormGroup = this.fb.group({
+      brandName: ['', Validators.required],
+      category: ['', Validators.required],
+      qty: ['', Validators.required]
+    });
+
+    this.otherFormGroup = this.fb.group({
+      category: ['', Validators.required],
+      qty: ['', Validators.required]
+    });
   }
 
   ngOnInit() {}
 
-  getErrorMessage = (controller: string) => {
-    const formController = this.newAsset.controls[controller];
-    return formController.hasError('required')
-      ? 'You must enter a value'
-      : formController.hasError('email')
-      ? 'Not a valid email'
-      : '';
+  getErrorMessage = (fg: FormGroup, controller: string) => {
+    try {
+      const formController = fg.controls[controller];
+      return formController.hasError('required')
+        ? 'You must enter a value'
+        : formController.hasError('email')
+        ? 'Not a valid email'
+        : '';
+    } catch (error) {
+      console.log('error', error, controller);
+    }
   };
 
-  checkFormControlIsValid(control: string) {
-    return this.newAsset.controls[control].invalid;
+  checkFormControlIsValid(fg: FormGroup, control: string) {
+    return fg.controls[control].invalid;
   }
 
   onSubmit = () => {
-    const asset: Asset = this.newAsset.value;
+    const asset: Asset = this.commonFieldsGroup.value;
     this.assetService.addNewAsset(asset);
+  };
+
+  categoryChange = $event => {
+    console.log('$event', $event);
   };
 }

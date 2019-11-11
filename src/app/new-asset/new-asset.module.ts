@@ -12,6 +12,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -32,6 +34,8 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    MatStepperModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ],
   declarations: [NewAssetPage]
