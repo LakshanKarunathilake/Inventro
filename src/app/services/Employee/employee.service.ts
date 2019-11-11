@@ -94,7 +94,7 @@ export class EmployeeService {
       });
   };
 
-  unBlockUser = (nic: string) => {
+  unblockUser = (nic: string) => {
     const url = `${environment.backendURL}employees/unblockuser`;
     this.http
       .get(url, {
