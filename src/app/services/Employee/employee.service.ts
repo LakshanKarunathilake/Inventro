@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { SwalService } from '../swal/swal.service';
 import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BookAsset } from 'src/models/BookAsset';
 
 @Injectable({
   providedIn: 'root'
@@ -112,5 +113,15 @@ export class EmployeeService {
           'Sorry user unblocking failed please try again'
         );
       });
+  };
+
+  getRequests = () => {
+    const url = `${environment.backendURL}assign/request/view/all`;
+    return this.http.get<BookAsset[]>(url);
+  };
+
+  getBookings = () => {
+    const url = `${environment.backendURL}assign/book/view/all`;
+    return this.http.get<BookAsset[]>(url);
   };
 }
