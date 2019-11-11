@@ -20,6 +20,7 @@ interface LoginResponse {
 export class AuthenticateService {
   private userType;
   private authToken;
+  private user: LoginResponse;
   constructor(private http: HttpClient, private sweet: SwalService) {}
 
   loginUser = (username, password) => {
@@ -28,7 +29,7 @@ export class AuthenticateService {
         .post(environment.backendURL + 'authenticate', { username, password })
         .toPromise()
         .then((data: LoginResponse) => {
-          console.log('data', data);
+          this.user = data;
           if (data.unblocked) {
             res('success');
             // this.writeToSessionStorage(data.token);
@@ -76,5 +77,9 @@ export class AuthenticateService {
 
   getUserType = () => {
     return this.userType;
+  };
+
+  getUser = () => {
+    return this.user;
   };
 }
