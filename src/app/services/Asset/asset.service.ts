@@ -13,11 +13,7 @@ export class AssetService {
 
   addNewAsset = (asset: Asset) => {
     const url = `${environment.backendURL}asset/add`;
-    this.http
-      .post<Asset>(url, asset)
-      .toPromise()
-      .then(data => console.log('data', data))
-      .catch(error => console.log('error', error));
+    return this.http.post<Asset>(url, asset).toPromise();
   };
 
   getAllAssets = () => {

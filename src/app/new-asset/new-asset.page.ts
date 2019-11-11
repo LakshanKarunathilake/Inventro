@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Asset } from 'src/models/Asset';
 import { AssetService } from '../services/Asset/asset.service';
+import { SwalService } from '../services/swal/swal.service';
 
 @Component({
   selector: 'app-new-asset',
@@ -77,23 +78,28 @@ export class NewAssetPage implements OnInit {
 
   specialFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder, private assetService: AssetService) {
+  constructor(
+    private fb: FormBuilder,
+    private assetService: AssetService,
+    private swal: SwalService
+  ) {
     this.commonFieldsGroup = this.fb.group({
-      assetCategory: ['', Validators.required],
+      assetcategory: ['', Validators.required],
+      assetId: ['', Validators.required],
       buyingPrice: ['', [Validators.required]],
       warrantyStatus: ['', Validators.required],
       boughtDate: ['', Validators.required],
       description: ['', Validators.required],
       location: ['', Validators.required],
-      wYear: ['', Validators.required],
-      wMonth: ['', Validators.required],
-      wDay: ['', Validators.required],
-      companyName: ['', Validators.required],
-      companyAddress: ['', Validators.required],
+      years: ['', Validators.required],
+      months: ['', Validators.required],
+      days: ['', Validators.required],
+      boughtCompanyName: ['', Validators.required],
+      boughtCompanyAddress: ['', Validators.required],
       companyContact: ['', Validators.required]
     });
 
-    this.commonFieldsGroup.controls['assetCategory'].valueChanges.subscribe(
+    this.commonFieldsGroup.controls['assetcategory'].valueChanges.subscribe(
       data => {
         if (data === 'PC' || data === 'LAPTOP') {
           this.specialFormGroup = this.computerFormGroup;
@@ -152,8 +158,47 @@ export class NewAssetPage implements OnInit {
   }
 
   onSubmit = () => {
-    const asset: Asset = this.commonFieldsGroup.value;
-    this.assetService.addNewAsset(asset);
+    let asset: Asset;
+    const category = this.commonFieldsGroup.controls['assetcategory'].value;
+    if (category === 'PC' || category === 'LAPTOP') {
+      asset = {
+        ...this.commonFieldsGroup.value,
+        ...this.computerFormGroup.value
+      };
+    } else if (category === 'PROJECTOR') {
+      asset = {
+        ...this.commonFieldsGroup.value,
+        ...this.projectorFormGroup.value
+      };
+    } else if (category === 'FURNITURE') {
+      asset = {
+        ...this.commonFieldsGroup.value,
+        ...this.computerFormGroup.value
+      };
+    } else {
+      asset = {
+        ...this.commonFieldsGroup.value,
+        ...this.otherFormGroup.value
+      };
+    }
+    console.log('asset', asset);
+    this.assetService
+      .addNewAsset(asset)
+      .then(data => {
+        this.swal.viewSuccessMessage('Success', 'Asset added successfully');
+        this.commonFieldsGroup.reset();
+        this.computerFormGroup.reset();
+        this.projectorFormGroup.reset();
+        this.furnitureFormGroup.reset();
+        this.otherFormGroup.reset();
+      })
+      .catch(error => {
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry asset adding failure please try again'
+        );
+        console.log('error', error);
+      });
   };
 
   categoryChange = $event => {

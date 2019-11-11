@@ -5,16 +5,25 @@
       <form [formGroup]="commonFieldsGroup">
         <ng-template matStepLabel>Fill out basics</ng-template>
         <mat-form-field>
+          <mat-label>Enter Asset ID</mat-label>
+          <input matInput placeholder="LAP001" formControlName="assetId" />
+          <mat-error
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'assetId')"
+            >{{ getErrorMessage(commonFieldsGroup, 'assetId') }}</mat-error
+          >
+        </mat-form-field>
+        <br />
+        <mat-form-field>
           <mat-label>Asset Category</mat-label>
-          <mat-select formControlName="assetCategory">
+          <mat-select formControlName="assetcategory">
             <mat-option *ngFor="let category of categories" [value]="category">
               {{ category }}
             </mat-option>
           </mat-select>
           <mat-error
-            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'assetCategory')"
+            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'assetcategory')"
             >{{
-              getErrorMessage(commonFieldsGroup, 'assetCategory')
+              getErrorMessage(commonFieldsGroup, 'assetcategory')
             }}</mat-error
           >
         </mat-form-field>
@@ -53,7 +62,7 @@
               placeholder="Years"
               aria-label="Years"
               [matAutocomplete]="auto"
-              formControlName="wYear"
+              formControlName="years"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let year of wYears" [value]="year">
@@ -61,8 +70,8 @@
               </mat-option>
             </mat-autocomplete>
             <mat-error
-              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'wYear')"
-              >{{ getErrorMessage(commonFieldsGroup, 'wYear') }}</mat-error
+              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'years')"
+              >{{ getErrorMessage(commonFieldsGroup, 'years') }}</mat-error
             >
           </mat-form-field>
           <mat-form-field>
@@ -71,7 +80,7 @@
               placeholder="Months"
               aria-label="Months"
               [matAutocomplete]="auto1"
-              formControlName="wMonth"
+              formControlName="months"
             />
             <mat-autocomplete #auto1="matAutocomplete">
               <mat-option *ngFor="let year of wMonths" [value]="year">
@@ -79,8 +88,8 @@
               </mat-option>
             </mat-autocomplete>
             <mat-error
-              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'wMonth')"
-              >{{ getErrorMessage(commonFieldsGroup, 'wMonth') }}</mat-error
+              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'months')"
+              >{{ getErrorMessage(commonFieldsGroup, 'months') }}</mat-error
             >
           </mat-form-field>
           <mat-form-field>
@@ -89,7 +98,7 @@
               placeholder="Days"
               aria-label="Days"
               [matAutocomplete]="auto2"
-              formControlName="wDay"
+              formControlName="days"
             />
             <mat-autocomplete #auto2="matAutocomplete">
               <mat-option *ngFor="let day of wDays" [value]="day">
@@ -97,8 +106,8 @@
               </mat-option>
             </mat-autocomplete>
             <mat-error
-              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'wDay')"
-              >{{ getErrorMessage(commonFieldsGroup, 'wDay') }}</mat-error
+              *ngIf="checkFormControlIsValid(commonFieldsGroup, 'days')"
+              >{{ getErrorMessage(commonFieldsGroup, 'days') }}</mat-error
             >
           </mat-form-field>
         </div>
@@ -151,11 +160,15 @@
           <input
             matInput
             placeholder="Company Name"
-            formControlName="companyName"
+            formControlName="boughtCompanyName"
           />
           <mat-error
-            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'companyName')"
-            >{{ getErrorMessage(commonFieldsGroup, 'companyName') }}</mat-error
+            *ngIf="
+              checkFormControlIsValid(commonFieldsGroup, 'boughtCompanyName')
+            "
+            >{{
+              getErrorMessage(commonFieldsGroup, 'boughtCompanyName')
+            }}</mat-error
           >
         </mat-form-field>
         <br /><br />
@@ -163,12 +176,14 @@
           <input
             matInput
             placeholder="Company Address"
-            formControlName="companyAddress"
+            formControlName="boughtCompanyAddress"
           />
           <mat-error
-            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'companyAddress')"
+            *ngIf="
+              checkFormControlIsValid(commonFieldsGroup, 'boughtCompanyAddress')
+            "
             >{{
-              getErrorMessage(commonFieldsGroup, 'companyAddress')
+              getErrorMessage(commonFieldsGroup, 'boughtCompanyAddress')
             }}</mat-error
           >
         </mat-form-field>
@@ -434,10 +449,6 @@
         <button mat-button (click)="stepper.reset()">Reset</button>
         <button mat-button (click)="onSubmit()">Submit</button>
       </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
     </mat-step>
   </mat-horizontal-stepper>
 </ion-content>
