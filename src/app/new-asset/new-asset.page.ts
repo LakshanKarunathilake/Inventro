@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Asset } from 'src/models/Asset';
 import { AssetService } from '../services/Asset/asset.service';
 import { SwalService } from '../services/swal/swal.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-new-asset',
@@ -77,7 +78,7 @@ export class NewAssetPage implements OnInit {
   otherFormGroup: FormGroup;
 
   specialFormGroup: FormGroup;
-
+  @ViewChild('stepper', { static: false }) stepper: MatStepper;
   constructor(
     private fb: FormBuilder,
     private assetService: AssetService,
@@ -191,6 +192,7 @@ export class NewAssetPage implements OnInit {
         this.projectorFormGroup.reset();
         this.furnitureFormGroup.reset();
         this.otherFormGroup.reset();
+        this.stepper.reset();
       })
       .catch(error => {
         this.swal.viewErrorMessage(
