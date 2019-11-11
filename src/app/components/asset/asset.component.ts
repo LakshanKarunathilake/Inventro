@@ -22,7 +22,7 @@ export class AssetComponent implements OnInit {
     const numberOfDaysToAdd = 14;
     from.setDate(from.getDate() + numberOfDaysToAdd);
     console.log('from', from);
-
+    // const request: BookAsset;
     const alert = await this.alertController.create({
       header: 'Mention the From Date, To Date and a message!',
       inputs: [
@@ -55,7 +55,7 @@ export class AssetComponent implements OnInit {
         {
           text: 'Ok',
           handler: () => {
-            this.assetService.placeBook();
+            // this.assetService.placeBook(request);
           }
         }
       ]

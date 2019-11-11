@@ -70,7 +70,8 @@ export class NewEmployeePage implements OnInit {
       password: this.signupForm.controls['password'].value,
       nic: this.signupForm.controls['nic'].value,
       email: this.signupForm.controls['email'].value,
-      contactNo: this.signupForm.controls['telephoneNumber'].value
+      contactNo: this.signupForm.controls['telephoneNumber'].value,
+      unblocked: true
     };
     console.log('employee', employee);
     this.employee.createNewEmployee(employee);

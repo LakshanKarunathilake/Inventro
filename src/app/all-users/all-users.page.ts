@@ -40,7 +40,7 @@ export class AllUsersPage implements OnInit {
     this.employee.blockUser(nic);
   };
 
-  unBlockUser = nic => {
+  unblockUser = nic => {
     this.employee.unblockUser(nic);
   };
 }
