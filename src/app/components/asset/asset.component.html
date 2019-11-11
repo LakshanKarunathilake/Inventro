@@ -36,7 +36,14 @@
     >
       Request
     </button>
-    <button mat-raised-button color="warn" class="action-button">Damage</button>
+    <button
+      mat-raised-button
+      color="warn"
+      class="action-button"
+      (click)="deleteAsset(asset.id)"
+    >
+      Delete
+    </button>
     <button
       mat-raised-button
       color="accent"

@@ -63,4 +63,8 @@ export class AssetComponent implements OnInit {
 
     await alert.present();
   }
+
+  deleteAsset = id => {
+    this.assetService.deleteAsset(id);
+  };
 }

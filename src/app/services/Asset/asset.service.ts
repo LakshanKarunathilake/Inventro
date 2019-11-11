@@ -76,4 +76,21 @@ export class AssetService {
         );
       });
   };
+
+  deleteAsset = id => {
+    const url = `${environment.backendURL}asset/delete/id `;
+    this.http
+      .delete(url)
+      .toPromise()
+      .then(() => {
+        this.swal.viewSuccessMessage('Succes', 'Asset Deleted successfully');
+      })
+      .catch(err => {
+        console.log('err', err);
+        this.swal.viewErrorMessage(
+          'Error',
+          'Asset deletion failure make sure the asset resides in the database'
+        );
+      });
+  };
 }
