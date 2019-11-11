@@ -4,6 +4,7 @@ import { Asset } from 'src/models/Asset';
 import { environment } from 'src/environments/environment';
 import { BookAsset } from 'src/models/BookAsset';
 import { SwalService } from '../swal/swal.service';
+import { BreakDown } from 'src/models/BreakDown';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,27 @@ export class AssetService {
         this.swal.viewErrorMessage(
           'Error',
           'Booking placement failure please try again'
+        );
+      });
+  };
+
+  placeBreakDown = (breakDown: BreakDown) => {
+    const url = `${environment.backendURL}breakdown/add `;
+
+    this.http
+      .post(url, breakDown)
+      .toPromise()
+      .then(data => {
+        this.swal.viewSuccessMessage(
+          'Success',
+          'Break down informed successfully'
+        );
+      })
+      .catch(err => {
+        console.log('err', err);
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry try again with valid asset ID'
         );
       });
   };
