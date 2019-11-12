@@ -50,6 +50,15 @@ export class AssetService {
       .post<BookAsset>(url, request)
       .toPromise()
       .then(() => {
+        this.afs
+          .collection('BookAssetNotification')
+          .add(request)
+          .then(() => {
+            console.log('Booking added to firestore');
+          })
+          .catch(err => {
+            console.log('err', err);
+          });
         this.swal.viewSuccessMessage('Success', 'Booking placed successfully');
       })
       .catch(err => {
