@@ -63,4 +63,22 @@ export class MenuPage implements OnInit {
     this.auth.logoutUser();
     this.router.navigateByUrl(`/login`);
   };
+
+  isAuthorized = (title: string) => {
+    const authorizedList = {
+      home: ['all'],
+      commplain: ['all'],
+      notifications: ['all'],
+      pool: ['all'],
+      employee: ['Asset Manager'],
+      asset: ['Asset Manager'],
+      allUsers: ['Asset Manager', 'CEO'],
+      requests: ['Asset Manager', 'Department Head'],
+      complain: ['all']
+    };
+
+    const { status } = this.auth.getUser();
+    const arr: Array<string> = authorizedList[title];
+    return arr.includes('all') || arr.includes(status);
+  };
 }
