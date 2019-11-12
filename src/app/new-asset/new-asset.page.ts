@@ -4,7 +4,6 @@ import { Asset } from 'src/models/Asset';
 import { AssetService } from '../services/Asset/asset.service';
 import { SwalService } from '../services/swal/swal.service';
 import { MatStepper } from '@angular/material/stepper';
-import undefined = require('firebase/empty-import');
 
 @Component({
   selector: 'app-new-asset',

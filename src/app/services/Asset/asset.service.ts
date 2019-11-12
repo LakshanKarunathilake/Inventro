@@ -28,7 +28,7 @@ export class AssetService {
   };
 
   placeRequest = (request: BookAsset) => {
-    const url = `${environment.backendURL}request/add `;
+    const url = `${environment.backendURL}assign/request/add `;
     this.http
       .post<BookAsset>(url, request)
       .toPromise()
