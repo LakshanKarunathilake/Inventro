@@ -15,6 +15,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/AuthInterceptor/auth-interceptor.service';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire';
+import {
+  AngularFirestoreModule,
+  AngularFirestore
+} from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,6 +28,7 @@ import { AngularFireModule } from '@angular/fire';
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
