@@ -95,4 +95,10 @@
       >Register</ion-button
     >
   </form>
+  <input
+    type="file"
+    [(ngModel)]="file"
+    accept="image/*"
+    (change)="onChange($event)"
+  />
 </ion-content>

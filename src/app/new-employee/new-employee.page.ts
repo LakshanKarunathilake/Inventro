@@ -15,6 +15,7 @@ import { SwalService } from '../services/swal/swal.service';
   styleUrls: ['./new-employee.page.scss']
 })
 export class NewEmployeePage implements OnInit {
+  imgBody = null;
   positions = [
     'Event Organizer',
     'Employee',
@@ -72,24 +73,25 @@ export class NewEmployeePage implements OnInit {
       nic: this.signupForm.controls['nic'].value,
       email: this.signupForm.controls['email'].value,
       contactNo: this.signupForm.controls['telephoneNumber'].value,
-      unblocked: true
+      unblocked: true,
+      img: this.imgBody
     };
     console.log('employee', employee);
-    this.employee
-      .createNewEmployee(employee)
-      .then(() => {
-        this.swal.viewSuccessMessage(
-          'Success',
-          'Employee added successfully !'
-        );
-        this.signupForm.reset();
-      })
-      .catch(error =>
-        this.swal.viewErrorMessage(
-          'Error',
-          'Sorry we could not place your request'
-        )
-      );
+    // this.employee
+    //   .createNewEmployee(employee)
+    //   .then(() => {
+    //     this.swal.viewSuccessMessage(
+    //       'Success',
+    //       'Employee added successfully !'
+    //     );
+    //     this.signupForm.reset();
+    //   })
+    //   .catch(error =>
+    //     this.swal.viewErrorMessage(
+    //       'Error',
+    //       'Sorry we could not place your request'
+    //     )
+    //   );
   };
 
   passwordsMatch = () => {
@@ -120,4 +122,35 @@ export class NewEmployeePage implements OnInit {
       }
     };
   };
+
+  // Below part is used to display the selected image and stringify the image and set it into  employee's img property
+  onChange(event) {
+    console.log('calling');
+    console.log(event);
+    const file = event.target.files[0];
+    const imgModel = {
+      Title: undefined,
+      Description: undefined,
+      ImageType: undefined,
+      Base64String: undefined
+    };
+    let imgURL;
+
+    if (file.type.split('/')[0] !== 'image') {
+      // check if it's a image or not
+      this.swal.viewErrorMessage('Error', 'Please upload an image');
+      return;
+    }
+
+    imgModel.ImageType = file.type.split('/')[1]; // set file type
+    const reader = new FileReader();
+    reader.onload = event2 => {
+      imgURL = reader.result;
+      imgModel.Base64String = imgURL.toString();
+    };
+    reader.onloadend = end => {
+      this.imgBody = JSON.stringify(imgModel);
+    };
+    reader.readAsDataURL(file); // read and loads the file
+  }
 }
