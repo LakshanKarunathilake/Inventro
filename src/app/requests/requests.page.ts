@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { BreakDown } from 'src/models/BreakDown';
 import { AssetService } from '../services/Asset/asset.service';
 import { AuthenticateService } from '../services/Authenticate/authenticate.service';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-requests',
@@ -12,7 +13,6 @@ import { AuthenticateService } from '../services/Authenticate/authenticate.servi
   styleUrls: ['./requests.page.scss']
 })
 export class RequestsPage implements OnInit {
-  bookings: Observable<BookAsset[]>;
   requests: Observable<BookAsset[]>;
   breakDowns: Observable<BreakDown[]>;
 
@@ -21,9 +21,34 @@ export class RequestsPage implements OnInit {
     private asset: AssetService,
     private auth: AuthenticateService
   ) {
-    this.bookings = this.employee.getBookings();
-    this.requests = this.employee.getRequests();
+    const { status } = this.auth.getUser();
+    this.requests = this.employee.getRequests().pipe(
+      map(val => {
+        const filtered = [];
+        return val.filter(value => {
+          if (
+            status === 'Asset Manager' &&
+            !value.amTouched &&
+            !value.dhTouched
+          ) {
+            return true;
+          } else if (
+            status === 'Department Head' &&
+            !value.amTouched &&
+            !value.dhTouched
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+      })
+    );
     this.breakDowns = this.asset.getAllBreakDowns();
+
+    this.requests.subscribe(data => {
+      console.log('data', data);
+    });
   }
 
   ngOnInit() {}
