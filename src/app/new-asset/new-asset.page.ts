@@ -86,7 +86,6 @@ export class NewAssetPage implements OnInit {
   ) {
     this.commonFieldsGroup = this.fb.group({
       assetcategory: ['', Validators.required],
-      assetId: ['', Validators.required],
       buyingPrice: ['', [Validators.required]],
       warrantyStatus: ['', Validators.required],
       boughtDate: ['', Validators.required],

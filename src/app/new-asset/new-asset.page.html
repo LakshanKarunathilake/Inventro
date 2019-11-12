@@ -4,14 +4,6 @@
     <mat-step [stepControl]="commonFieldsGroup">
       <form [formGroup]="commonFieldsGroup">
         <ng-template matStepLabel>Fill out basics</ng-template>
-        <mat-form-field>
-          <mat-label>Enter Asset ID</mat-label>
-          <input matInput placeholder="LAP001" formControlName="assetId" />
-          <mat-error
-            *ngIf="checkFormControlIsValid(commonFieldsGroup, 'assetId')"
-            >{{ getErrorMessage(commonFieldsGroup, 'assetId') }}</mat-error
-          >
-        </mat-form-field>
         <br />
         <mat-form-field>
           <mat-label>Asset Category</mat-label>
