@@ -49,7 +49,12 @@
       </mat-radio-group>
     </section>
     <mat-form-field style="display: block" appearance="outline">
-      <input matInput placeholder="password" formControlName="password" />
+      <input
+        matInput
+        placeholder="password"
+        formControlName="password"
+        type="password"
+      />
       <mat-error *ngIf="checkFormControlIsValid('password')">{{
         getErrorMessage('password')
       }}</mat-error>
@@ -59,6 +64,7 @@
         matInput
         placeholder="Confirm Password"
         formControlName="confirmPassword"
+        type="password"
       />
       <mat-error *ngIf="checkFormControlIsValid('confirmPassword')">{{
         getErrorMessage('confirmPassword')
@@ -69,6 +75,7 @@
         matInput
         placeholder="Contact Number"
         formControlName="telephoneNumber"
+        type="tel"
       />
       <mat-error *ngIf="checkFormControlIsValid('telephoneNumber')">{{
         getErrorMessage('telephoneNumber')

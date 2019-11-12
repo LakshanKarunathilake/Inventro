@@ -74,7 +74,20 @@ export class NewEmployeePage implements OnInit {
       unblocked: true
     };
     console.log('employee', employee);
-    this.employee.createNewEmployee(employee);
+    this.employee
+      .createNewEmployee(employee)
+      .then(() => {
+        this.swal.viewSuccessMessage(
+          'Success',
+          'Employee added successfully !'
+        );
+      })
+      .catch(error =>
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry we could not place your request'
+        )
+      );
   };
 
   passwordsMatch = () => {
