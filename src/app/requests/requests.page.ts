@@ -18,4 +18,12 @@ export class RequestsPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  approve = id => {
+    this.employee.approveBooking(id);
+  };
+
+  reject = id => {
+    this.employee.assignReject(id);
+  };
 }

@@ -18,8 +18,12 @@
       </ion-grid>
     </ion-card-content>
     <ion-footer>
-      <ion-button class="ion-float-right">Approve</ion-button>
-      <ion-button class="ion-float-right">Reject</ion-button>
+      <ion-button class="ion-float-right" (click)="approve(booking.id)"
+        >Approve</ion-button
+      >
+      <ion-button class="ion-float-right" (click)="reject(booking.id)"
+        >Reject</ion-button
+      >
     </ion-footer>
   </ion-card>
   <br />
@@ -30,6 +34,16 @@
       <ion-card-title>Booking ID : {{ booking.id }}</ion-card-title>
       <ion-card-subtitle>Booking ID : {{ booking.assetId }}</ion-card-subtitle>
     </ion-card-header>
-    sdasd</ion-card
-  >
+    <ion-card-content>
+      <ion-grid>
+        <ion-row
+          *ngFor="let row of booking | keyvalue; let i = index"
+          [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+        >
+          <ion-col>{{ row.key }}</ion-col>
+          <ion-col>{{ row.value }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
