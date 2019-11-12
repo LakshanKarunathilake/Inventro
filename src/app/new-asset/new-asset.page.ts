@@ -182,9 +182,11 @@ export class NewAssetPage implements OnInit {
       };
     }
     console.log('asset', asset);
-    if (asset.quantity === 0) {
+    if (asset.quantity === '0') {
       asset.quantity = 1;
     }
+    asset.quantity = 1;
+
     this.assetService
       .addNewAsset(asset)
       .then(data => {
