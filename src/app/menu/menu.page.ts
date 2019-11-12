@@ -48,6 +48,11 @@ export class MenuPage implements OnInit {
       title: 'complain',
       url: 'complain',
       icon: 'bug'
+    },
+    {
+      title: 'Contact Us',
+      url: 'contact',
+      icon: 'megaphone'
     }
   ];
 
@@ -74,7 +79,8 @@ export class MenuPage implements OnInit {
       asset: ['Asset Manager'],
       allUsers: ['Asset Manager', 'CEO'],
       requests: ['Asset Manager', 'Department Head'],
-      complain: ['all']
+      complain: ['all'],
+      contact: ['all']
     };
 
     const { status } = this.auth.getUser();
