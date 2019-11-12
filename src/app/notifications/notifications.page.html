@@ -1,9 +1,9 @@
 <app-menu-title title="Notifications"> </app-menu-title>
 
-<ion-content>
+<ion-content padding>
+  <h3>Bookings</h3>
   <app-notification
-    *ngFor="let notification of dummyNotifications"
-    [title]="notification.title"
-    [message]="notification.message"
+    *ngFor="let notification of bookings | async"
+    [booking]="notification"
   ></app-notification>
 </ion-content>
