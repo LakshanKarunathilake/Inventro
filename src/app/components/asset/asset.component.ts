@@ -71,9 +71,11 @@ export class AssetComponent implements OnInit {
             };
             console.log('request', request);
             if (type === 'reserve') {
+              request.requestType = 'REQUEST';
               request.notificationType = 'Booking';
               this.assetService.placeBook(request);
             } else {
+              request.requestType = 'BOOK';
               request.notificationType = 'Requesting';
               this.assetService.placeRequest(request);
             }
