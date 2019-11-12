@@ -33,6 +33,7 @@
       color="primary"
       class="action-button"
       (click)="bookAsset('request', asset)"
+      [hidden]="!isAuthorized('request')"
     >
       Request
     </button>
@@ -41,6 +42,7 @@
       color="warn"
       class="action-button"
       (click)="deleteAsset(asset.id)"
+      [hidden]="!isAuthorized('delete')"
     >
       Delete
     </button>
@@ -48,6 +50,7 @@
       mat-raised-button
       color="accent"
       class="action-button"
+      [hidden]="!isAuthorized('book')"
       (click)="bookAsset('reserve', asset)"
     >
       Reserve

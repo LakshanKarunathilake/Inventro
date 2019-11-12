@@ -71,10 +71,10 @@ export class AssetComponent implements OnInit {
             };
             console.log('request', request);
             if (type === 'reserve') {
-              request.notificationType = 'Book';
+              request.notificationType = 'Booking';
               this.assetService.placeBook(request);
             } else {
-              request.notificationType = 'Request';
+              request.notificationType = 'Requesting';
               this.assetService.placeRequest(request);
             }
           }
@@ -87,5 +87,18 @@ export class AssetComponent implements OnInit {
 
   deleteAsset = id => {
     this.assetService.deleteAsset(id);
+  };
+
+  isAuthorized = type => {
+    const authorizedList = {
+      book: ['Project Manager', 'Event Organizer', 'Asset Manager'],
+      delete: ['Asset Manager'],
+      request: ['all']
+    };
+    const { status } = this.auth.getUser();
+    return (
+      authorizedList[type].includes(status) ||
+      authorizedList[type].includes('all')
+    );
   };
 }
