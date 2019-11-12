@@ -6,7 +6,6 @@ import {
   Validators,
   FormControl
 } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
 import { EmployeeService } from '../services/Employee/employee.service';
 import { SwalService } from '../services/swal/swal.service';
 
@@ -26,7 +25,6 @@ export class NewEmployeePage implements OnInit {
   signupForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private loadingCtrl: LoadingController,
     private employee: EmployeeService,
     private swal: SwalService
   ) {
@@ -84,6 +82,7 @@ export class NewEmployeePage implements OnInit {
           'Success',
           'Employee added successfully !'
         );
+        this.signupForm.reset();
       })
       .catch(error =>
         this.swal.viewErrorMessage(
