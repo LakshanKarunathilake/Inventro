@@ -125,9 +125,10 @@ export class EmployeeService {
       sub = 'departmenthead';
     }
     const url = `${environment.backendURL}assign/confirmation/${sub}`;
+    console.log('url', url);
     console.log('id', id);
     this.http
-      .post(url, { id })
+      .post(url, id)
       .toPromise()
       .then(() => {
         this.swal.viewSuccessMessage('Success', 'Approved successfully');
@@ -152,7 +153,7 @@ export class EmployeeService {
     }
     const url = `${environment.backendURL}assign/reject/${sub}`;
     this.http
-      .post(url, { id })
+      .post(url, id)
       .toPromise()
       .then(() => {
         this.swal.viewSuccessMessage('Success', 'Approved successfully');

@@ -15,4 +15,6 @@ export interface BookAsset {
   isAssigned?: boolean;
   isApprovedByAssetManager?: boolean;
   isApprovedByDepartmentHead?: boolean;
+  dhTouched?: boolean;
+  amTouched?: boolean;
 }

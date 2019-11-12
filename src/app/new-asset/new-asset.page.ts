@@ -4,6 +4,7 @@ import { Asset } from 'src/models/Asset';
 import { AssetService } from '../services/Asset/asset.service';
 import { SwalService } from '../services/swal/swal.service';
 import { MatStepper } from '@angular/material/stepper';
+import undefined = require('firebase/empty-import');
 
 @Component({
   selector: 'app-new-asset',
@@ -182,7 +183,7 @@ export class NewAssetPage implements OnInit {
       };
     }
     console.log('asset', asset);
-    if (asset.quantity === '0') {
+    if (asset.quantity === 0 || asset.quantity === undefined) {
       asset.quantity = 1;
     }
     asset.quantity = 1;
