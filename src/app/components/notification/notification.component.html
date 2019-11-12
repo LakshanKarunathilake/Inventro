@@ -1,6 +1,34 @@
-<ion-card>
-  <ion-card-header> {{ title }}</ion-card-header>
+<ion-card *ngIf="booking" class="booking">
+  <ion-card-header>
+    <ion-card-title>{{ booking.assetcategory }}</ion-card-title>
+    <ion-card-subtitle>{{ booking.assetId }}</ion-card-subtitle>
+  </ion-card-header>
   <ion-card-content>
-    {{ message }}
+    <ion-grid>
+      <ion-row
+        *ngFor="let row of booking | keyvalue; let i = index"
+        [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+      >
+        <ion-col>{{ row.key }}</ion-col>
+        <ion-col>{{ row.value }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="damage" class="damage">
+  <ion-card-header>
+    <ion-card-title>{{ damage.assetId }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row
+        *ngFor="let row of booking | keyvalue; let i = index"
+        [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+      >
+        <ion-col>{{ row.key }}</ion-col>
+        <ion-col>{{ row.value }}</ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card-content>
 </ion-card>
