@@ -77,21 +77,21 @@ export class NewEmployeePage implements OnInit {
       img: this.imgBody
     };
     console.log('employee', employee);
-    // this.employee
-    //   .createNewEmployee(employee)
-    //   .then(() => {
-    //     this.swal.viewSuccessMessage(
-    //       'Success',
-    //       'Employee added successfully !'
-    //     );
-    //     this.signupForm.reset();
-    //   })
-    //   .catch(error =>
-    //     this.swal.viewErrorMessage(
-    //       'Error',
-    //       'Sorry we could not place your request'
-    //     )
-    //   );
+    this.employee
+      .createNewEmployee(employee)
+      .then(() => {
+        this.swal.viewSuccessMessage(
+          'Success',
+          'Employee added successfully !'
+        );
+        this.signupForm.reset();
+      })
+      .catch(error =>
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry we could not place your request'
+        )
+      );
   };
 
   passwordsMatch = () => {
