@@ -5,12 +5,17 @@ import { environment } from 'src/environments/environment';
 import { BookAsset } from 'src/models/BookAsset';
 import { SwalService } from '../swal/swal.service';
 import { BreakDown } from 'src/models/BreakDown';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetService {
-  constructor(private http: HttpClient, private swal: SwalService) {}
+  constructor(
+    private http: HttpClient,
+    private swal: SwalService,
+    private afs: AngularFirestore
+  ) {}
 
   addNewAsset = (asset: Asset) => {
     const url = `${environment.backendURL}asset/add`;
@@ -62,11 +67,20 @@ export class AssetService {
     this.http
       .post(url, breakDown)
       .toPromise()
-      .then(data => {
+      .then(() => {
         this.swal.viewSuccessMessage(
           'Success',
           'Break down informed successfully'
         );
+        this.afs
+          .collection('BreakDownAsset')
+          .add(breakDown)
+          .then(() => {
+            console.log('Breakdown updated in firestore');
+          })
+          .catch(err => {
+            console.log('err', err);
+          });
       })
       .catch(err => {
         console.log('err', err);
