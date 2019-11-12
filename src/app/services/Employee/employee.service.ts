@@ -29,9 +29,12 @@ export class EmployeeService {
     return this.http.get<Employee[]>(url).pipe(
       map(emps => {
         const updated = emps.map(emp => {
-          emp.img = this.sanitizer.bypassSecurityTrustUrl(
-            emp.img.substring(36, emp.img.length - 2)
-          );
+          if (emp.img) {
+            emp.img = this.sanitizer.bypassSecurityTrustUrl(
+              emp.img.substring(36, emp.img.length - 2)
+            );
+          }
+
           return emp;
         });
         return updated;

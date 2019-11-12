@@ -20,7 +20,8 @@ export class NewEmployeePage implements OnInit {
     'Event Organizer',
     'Employee',
     'Asset Manager',
-    'Department Head'
+    'Department Head',
+    'Project Manager'
   ];
   signupForm: FormGroup;
   constructor(
