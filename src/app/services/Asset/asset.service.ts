@@ -116,4 +116,27 @@ export class AssetService {
         );
       });
   };
+
+  getAllBreakDowns = () => {
+    const url = `${environment.backendURL}breakdown/all`;
+    return this.http.get<BreakDown[]>(url);
+  };
+
+  releaseBreakDown = assetId => {
+    const url = `${environment.backendURL}breakdown/release`;
+    this.http
+      .get(url, { params: { assetId } })
+      .toPromise()
+      .then(data => {
+        console.log('data', data);
+        this.swal.viewSuccessMessage('Success', 'Asset Successfully Released');
+      })
+      .catch(err => {
+        console.log('err', err);
+        this.swal.viewErrorMessage(
+          'Error',
+          'Asset release failure please try again'
+        );
+      });
+  };
 }

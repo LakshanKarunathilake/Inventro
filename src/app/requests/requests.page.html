@@ -3,8 +3,8 @@
   <h3>Requests</h3>
   <ion-card *ngFor="let booking of requests | async">
     <ion-card-header>
-      <ion-card-title>Booking ID : {{ booking.id }}</ion-card-title>
-      <ion-card-subtitle>Booking ID : {{ booking.assetId }}</ion-card-subtitle>
+      <ion-card-title>Request ID : {{ booking.id }}</ion-card-title>
+      <ion-card-subtitle>Asset ID : {{ booking.assetId }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
@@ -28,22 +28,31 @@
   </ion-card>
   <br />
 
-  <h3>Bookings</h3>
-  <ion-card *ngFor="let booking of bookings | async">
-    <ion-card-header>
-      <ion-card-title>Booking ID : {{ booking.id }}</ion-card-title>
-      <ion-card-subtitle>Booking ID : {{ booking.assetId }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row
-          *ngFor="let row of booking | keyvalue; let i = index"
-          [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+  <section *ngIf="isAM()">
+    <h3>Breakdowns</h3>
+    <ion-card *ngFor="let breakdown of breakDowns | async">
+      <ion-card-header>
+        <ion-card-title>Breakdown ID : {{ breakdown.id }}</ion-card-title>
+        <ion-card-subtitle
+          >Asset ID : {{ breakdown.assetId }}</ion-card-subtitle
         >
-          <ion-col>{{ row.key }}</ion-col>
-          <ion-col>{{ row.value }}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row
+            *ngFor="let row of breakdown | keyvalue; let i = index"
+            [ngClass]="i % 2 == 0 ? 'dark' : 'light'"
+          >
+            <ion-col>{{ row.key }}</ion-col>
+            <ion-col>{{ row.value }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+      <ion-footer>
+        <ion-button class="ion-float-right" (click)="release(breakdown.assetId)"
+          >Release</ion-button
+        >
+      </ion-footer>
+    </ion-card>
+  </section>
 </ion-content>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/Employee/employee.service';
 import { BookAsset } from 'src/models/BookAsset';
 import { Observable } from 'rxjs';
+import { BreakDown } from 'src/models/BreakDown';
+import { AssetService } from '../services/Asset/asset.service';
+import { AuthenticateService } from '../services/Authenticate/authenticate.service';
 
 @Component({
   selector: 'app-requests',
@@ -11,10 +14,16 @@ import { Observable } from 'rxjs';
 export class RequestsPage implements OnInit {
   bookings: Observable<BookAsset[]>;
   requests: Observable<BookAsset[]>;
-  constructor(private employee: EmployeeService) {
+  breakDowns: Observable<BreakDown[]>;
+
+  constructor(
+    private employee: EmployeeService,
+    private asset: AssetService,
+    private auth: AuthenticateService
+  ) {
     this.bookings = this.employee.getBookings();
     this.requests = this.employee.getRequests();
-    this.employee.getBookings().subscribe(data => console.log('data', data));
+    this.breakDowns = this.asset.getAllBreakDowns();
   }
 
   ngOnInit() {}
@@ -25,5 +34,13 @@ export class RequestsPage implements OnInit {
 
   reject = id => {
     this.employee.assignReject(id);
+  };
+
+  isAM = () => {
+    return this.auth.getUser().status === 'Asset Manager';
+  };
+
+  release = assetId => {
+    this.asset.releaseBreakDown(assetId);
   };
 }
