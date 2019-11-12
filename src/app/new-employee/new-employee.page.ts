@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { EmployeeService } from '../services/Employee/employee.service';
+import { SwalService } from '../services/swal/swal.service';
 
 @Component({
   selector: 'app-new-employee',
@@ -25,7 +26,8 @@ export class NewEmployeePage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loadingCtrl: LoadingController,
-    private employee: EmployeeService
+    private employee: EmployeeService,
+    private swal: SwalService
   ) {
     this.signupForm = this.fb.group(
       {

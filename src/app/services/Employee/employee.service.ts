@@ -21,7 +21,7 @@ export class EmployeeService {
 
   createNewEmployee = (employee: Employee) => {
     const url = `${environment.backendURL}employees/add`;
-    this.http.post<Employee>(url, employee).toPromise();
+    return this.http.post<Employee>(url, employee).toPromise();
   };
 
   getAllEmployees = () => {
