@@ -6,6 +6,7 @@ import { SwalService } from '../swal/swal.service';
 import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookAsset } from 'src/models/BookAsset';
+import { AuthenticateService } from '../Authenticate/authenticate.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,26 +15,13 @@ export class EmployeeService {
   constructor(
     private http: HttpClient,
     private swal: SwalService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private auth: AuthenticateService
   ) {}
 
   createNewEmployee = (employee: Employee) => {
     const url = `${environment.backendURL}employees/add`;
-    this.http
-      .post<Employee>(url, employee)
-      .toPromise()
-      .then(() => {
-        this.swal.viewSuccessMessage(
-          'Success',
-          'Employee added successfully !'
-        );
-      })
-      .catch(error =>
-        this.swal.viewErrorMessage(
-          'Error',
-          'Sorry we could not place your request'
-        )
-      ); // parses JSON response into native JavaScript objects
+    this.http.post<Employee>(url, employee).toPromise();
   };
 
   getAllEmployees = () => {
@@ -123,5 +111,55 @@ export class EmployeeService {
   getBookings = () => {
     const url = `${environment.backendURL}assign/book/view/all`;
     return this.http.get<BookAsset[]>(url);
+  };
+
+  approveBooking = id => {
+    const status = this.auth.getUser().status;
+    let sub = '';
+    if (status === 'Asset Manager') {
+      sub = 'assetmanager';
+    } else if (status === 'Department Head') {
+      sub = 'departmenthead';
+    }
+    const url = `${environment.backendURL}assign/confirmation/${sub}`;
+    console.log('id', id);
+    this.http
+      .post(url, { id })
+      .toPromise()
+      .then(() => {
+        this.swal.viewSuccessMessage('Success', 'Approved successfully');
+      })
+      .catch(err => {
+        console.log('err', err);
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry approval is not recordered please try again'
+        );
+      });
+  };
+
+  assignReject = id => {
+    const status = this.auth.getUser().status;
+    console.log('id', id);
+    let sub = '';
+    if (status === 'Asset Manager') {
+      sub = 'assetmanager';
+    } else if (status === 'Department Head') {
+      sub = 'departmenthead';
+    }
+    const url = `${environment.backendURL}assign/reject/${sub}`;
+    this.http
+      .post(url, { id })
+      .toPromise()
+      .then(() => {
+        this.swal.viewSuccessMessage('Success', 'Approved successfully');
+      })
+      .catch(err => {
+        console.log('err', err);
+        this.swal.viewErrorMessage(
+          'Error',
+          'Sorry approval is not recordered please try again'
+        );
+      });
   };
 }
